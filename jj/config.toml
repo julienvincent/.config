@@ -1,0 +1,30 @@
+[user]
+name = "Julien Vincent"
+email = "m@julienvincent.io"
+
+[ui]
+default-command = "log-reversed"
+diff-instructions = false
+paginate = "never"
+# diff.tool = ["difft", "--color=always", "--tab-width=2", "--display=side-by-side", "$left", "$right"]
+# diff-editor="dirdiff"
+# diff-editor="nvim -c :JujutsuDiff --left $left --right $right"
+
+[aliases]
+log-reversed = ["log", "--reversed"]
+
+fetch = ["git", "fetch"]
+push = ["git", "push"]
+
+[git]
+auto-local-branch = true
+push-branch-prefix = "jv/change-"
+
+
+[signing]
+show-signatures = false
+sign-all = true
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFrtvt1/rcCsF7Jf4zgmu/vjRnzEXMlXzt8FmouxCxFH"
+backend = "ssh"
+backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+backends.ssh.allowed-signers = "/Users/julienvincent/.ssh/allowed-signers"

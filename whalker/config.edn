@@ -1,0 +1,5 @@
+{:model-path "/Users/julienvincent/.config/whalker/ggml-large-v3.bin"
+ :chord #{55 50}
+
+ :transcriber :jni
+ :lib-path "/Users/julienvincent/.config/whalker/libwhisper.so"}

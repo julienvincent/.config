@@ -1,0 +1,129 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+# A minimal left prompt
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+${custom.git_file_status}\
+$git_status\
+$hg_branch\
+$cmd_duration\
+$fill \
+$kubernetes\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$haskell\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$line_break\
+$jobs\
+$battery\
+$status\
+$container\
+$shell\
+$time\
+$character"""
+
+[fill]
+symbol = "-"
+style = "black"
+
+[directory]
+truncate_to_repo = false
+style = "bright-yellow"
+truncation_length = 8
+
+[gcloud]
+disabled = true
+
+[package]
+disabled = true
+
+[git_branch]
+style = "bright-purple"
+
+[git_metrics]
+disabled = true
+format = "([+$added]($added_style))/([-$deleted]($deleted_style) )"
+added_style = "bright-green"
+deleted_style = "bright-red"
+only_nonzero_diffs = false
+
+[git_status]
+style = "yellow"
+diverged = "⇡⇣"
+stashed = "*"
+conflicted="~"
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+style = "bright-green"
+
+[kubernetes]
+disabled = false
+style = "bright-purple"
+format = "[$symbol$context]($style) "
+
+[custom.git_file_status]
+style = "bright-green"
+description = "Indicate number of changed/added files in git repo"
+detect_folders = [".git"]
+command="""
+ADDED=$(git diff --cached --numstat | wc -l | xargs)
+MODIFIED=$(git diff --numstat | wc -l | xargs)
+
+[ "$ADDED" != "0" ] && echo -n "+${ADDED}" || true
+[ "$MODIFIED" != "0" ] && echo -n "!${MODIFIED}" || true
+"""
