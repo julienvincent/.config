@@ -1,13 +1,13 @@
-local wezterm = require("wezterm")
+local wez = require("wezterm")
 
 local modules = require("modules")
 
-local config = wezterm.config_builder()
+local config = wez.config_builder()
 
 config.check_for_updates = false
 
 config.color_scheme = "GruvboxDark"
-config.font = wezterm.font("MonoLisa", {
+config.font = wez.font("MonoLisa", {
 	weight = "Medium",
 })
 config.font_size = 13
@@ -27,10 +27,17 @@ config.cursor_thickness = "1.5pt"
 modules.init(config)
 
 config.colors["cursor_bg"] = "#928374"
+config.colors["cursor_border"] = "#928374"
+config.colors["split"] = "#928374"
+
+config.term = "wezterm"
+
+config.underline_thickness = "1.2pt"
+config.underline_position = "150%"
 
 config.inactive_pane_hsb = {
-  saturation = .5,
-  brightness = 0.6,
+	saturation = 0.5,
+	brightness = 0.6,
 }
 
 return config
