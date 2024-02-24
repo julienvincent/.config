@@ -30,8 +30,6 @@ config.colors["cursor_bg"] = "#928374"
 config.colors["cursor_border"] = "#928374"
 config.colors["split"] = "#928374"
 
-config.term = "wezterm"
-
 config.underline_thickness = "1.2pt"
 config.underline_position = "150%"
 
@@ -39,5 +37,7 @@ config.inactive_pane_hsb = {
 	saturation = 0.5,
 	brightness = 0.6,
 }
+
+config.term = "wezterm"
 
 return config

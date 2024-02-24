@@ -38,3 +38,7 @@ ngrok
 defaults write -g ApplePressAndHoldEnabled -bool false
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
+
+## Wezterm Undercurl
+
+To enable undercurl follow the instructions here: https://wezfurlong.org/wezterm/config/lua/config/term.html?h=underc
