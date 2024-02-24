@@ -17,7 +17,7 @@ function M.init(config)
 	config.use_fancy_tab_bar = false
 	config.show_tab_index_in_tab_bar = false
 	config.show_new_tab_button_in_tab_bar = false
-	config.tab_max_width = 32
+	config.tab_max_width = 50
 
 	local tab_bar_bg = "#282828"
 
