@@ -2,7 +2,7 @@ local M = {}
 
 local function spawn_terminal_window(cb)
 	local cmd = "/opt/homebrew/bin/wezterm"
-	local args = { "start", "--always-new-process", "--workspace", "term" }
+	local args = { '--config=term="xterm-256color"', "start", "--always-new-process", "--workspace", "term" }
 	local task = hs.task.new(cmd, nil, args)
 
 	local watcher
