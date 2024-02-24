@@ -5,13 +5,14 @@ local M = {}
 
 function M.init(_)
 	wez.on("gui-attached", function()
-		local workspace = mux.get_active_workspace()
-		if workspace ~= "term" then
-			return
-		end
-
 		for _, mux_window in ipairs(mux.all_windows()) do
 			local window = mux_window:gui_window()
+			window:maximize()
+
+			local workspace = mux.get_active_workspace()
+			if workspace ~= "term" then
+				return
+			end
 
 			local overrides = window:get_config_overrides() or {}
 
