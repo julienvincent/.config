@@ -20,15 +20,15 @@ function M.init(config)
 			}),
 		},
 		{
-			key = "w",
-			mods = "CMD",
-			action = action.CloseCurrentPane({ confirm = false }),
-		},
-
-		{
 			mods = "CMD|SHIFT",
 			key = "Enter",
 			action = action.TogglePaneZoomState,
+		},
+
+		{
+			key = "w",
+			mods = "CMD",
+			action = action.CloseCurrentPane({ confirm = false }),
 		},
 
 		{
