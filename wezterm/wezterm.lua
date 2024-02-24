@@ -5,6 +5,7 @@ local modules = require("modules")
 local config = wez.config_builder()
 
 config.check_for_updates = false
+config.window_close_confirmation = 'AlwaysPrompt'
 
 config.color_scheme = "GruvboxDark"
 config.font = wez.font("MonoLisa", {
@@ -34,6 +35,7 @@ config.underline_thickness = "1.2pt"
 config.underline_position = "150%"
 
 config.selection_word_boundary = " \t\n{}[]()\"'`*:"
+
 config.inactive_pane_hsb = {
 	saturation = 0.5,
 	brightness = 0.6,
