@@ -102,7 +102,8 @@
 (add-tap
  (fn [data]
    (if (instance? Throwable data)
-     (.println System/out (pretty.exceptions/format-exception data))
+     (binding [pretty.exceptions/*print-level* 20]
+       (.println System/out (pretty.exceptions/format-exception data)))
      (let [pretty-string (puget/pprint-str data puget-opts)]
        (.println System/out pretty-string)))))
 
