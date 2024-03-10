@@ -6,6 +6,7 @@
 (require '[clojure.java.io :as io])
 (require '[puget.printer :as puget])
 (require '[clojure.math :as math])
+(require '[clj-commons.format.exceptions :as pretty.exceptions])
 
 (def ^:private m2-dir
   (str (System/getenv "HOME") "/.m2"))
@@ -51,8 +52,10 @@
 
 (add-tap
  (fn [data]
-   (let [pretty-string (puget/pprint-str data puget-opts)]
-     (.println System/out pretty-string))))
+   (if (instance? Throwable data)
+     (.println System/out (pretty.exceptions/format-exception data))
+     (let [pretty-string (puget/pprint-str data puget-opts)]
+       (.println System/out pretty-string)))))
 
 (defn instrument! []
   #_(binding [*out* (java.io.PrintWriter. (java.io.OutputStreamWriter. System/out))]
@@ -78,3 +81,5 @@
      (prn (str "Time [" ~name "]: " delta# "ms"))
      (tap> [~name, delta#])
      result#))
+
+nil
