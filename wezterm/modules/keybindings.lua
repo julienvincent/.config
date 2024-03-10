@@ -36,6 +36,24 @@ function M.init(config)
 			key = "w",
 			action = action.CloseCurrentPane({ confirm = false }),
 		},
+		{
+			mods = "CMD",
+			key = "t",
+			action = action.SpawnCommandInNewTab({
+				cwd = wezterm.home_dir,
+			}),
+		},
+
+		{
+			mods = "OPT|SHIFT",
+			key = "LeftArrow",
+			action = action.MoveTabRelative(-1),
+		},
+		{
+			mods = "OPT|SHIFT",
+			key = "RightArrow",
+			action = action.MoveTabRelative(1),
+		},
 
 		{
 			key = "LeftArrow",
