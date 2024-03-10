@@ -95,6 +95,6 @@ style = "bright-purple"
 format = "[$symbol$context]($style) "
 
 [custom.jujutsu]
-detect_folders = [".jj"]
+when = true
 shell=["sh"]
 command="~/.config/starship/jujutsu.sh"

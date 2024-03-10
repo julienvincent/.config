@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+  exit 0
+fi
+
 jj_log() {
   jj log --no-graph --ignore-working-copy -r "$1" -T "$2"
 }
