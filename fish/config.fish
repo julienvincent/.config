@@ -9,7 +9,8 @@ set -gx TAOENSSO_TIMBRE_CONFIG_EDN "{:min-level :error}"
 set -g fish_autosuggestion_enabled 0
 set fish_greeting ""
 
-alias hr 'history --merge'  # read and merge history from disk
+# read and merge history from disk
+alias hr 'history --merge'
 
 alias p="pnpm"
 alias pl="pnpm link --global"
