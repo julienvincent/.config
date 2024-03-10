@@ -5,6 +5,7 @@
 (require '[clojure.string :as str])
 (require '[clojure.java.io :as io])
 (require '[clojure.pprint :as pprint])
+(require '[puget.printer :as puget])
 
 (def m2-dir
   (str (System/getenv "HOME") "/.m2"))
@@ -33,7 +34,21 @@
  (bound-fn*
   (fn [data]
     (binding [*out* (java.io.PrintWriter. (java.io.OutputStreamWriter. System/out))]
-      (pprint/pprint data)))))
+      (puget/pprint data {:print-color true
+                          :color-scheme {:delimiter nil
+                                         :tag       [:white]
+
+                                         :nil       [:bold :black]
+                                         :boolean   [:green]
+                                         :number    [:magenta :bold]
+                                         :string    [:bold :green]
+                                         :character [:bold :magenta]
+                                         :keyword   [:bold :red]
+                                         :symbol    [:white :bold]
+
+                                         :function-symbol [:bold :blue]
+                                         :class-delimiter [:blue]
+                                         :class-name      [:bold :blue]}})))))
 
 (defn instrument! []
   #_(binding [*out* (java.io.PrintWriter. (java.io.OutputStreamWriter. System/out))]
