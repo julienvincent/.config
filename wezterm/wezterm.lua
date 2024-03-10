@@ -21,7 +21,7 @@ config.freetype_load_target = "Normal"
 config.window_padding = {
 	left = 10,
 	right = 10,
-	top = 0,
+	top = 10,
 	bottom = 0,
 }
 
@@ -44,5 +44,11 @@ config.inactive_pane_hsb = {
 }
 
 config.term = "wezterm"
+
+config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
+
+config.window_frame = {
+	border_top_height = "10",
+}
 
 return config
