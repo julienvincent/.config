@@ -11,21 +11,20 @@
 (import '[java.nio.file Paths])
 (import '[java.net URI])
 
-(def project-bindings
-  (delay
-    (some->> (slurp "deps.local.edn")
-             (edn/read-string)
-             :aliases
-             :local
-             :bindings)))
+(defn get-project-bindings []
+  (some->> (slurp "deps.local.edn")
+           (edn/read-string)
+           :aliases
+           :local
+           :bindings))
 
 (defn restart-system []
-  (if-let [sym (:restart! @project-bindings)]
+  (if-let [sym (:restart! (get-project-bindings))]
     ((requiring-resolve sym))
     (println "No :restart! defined in project :local")))
 
 (defn stop-system []
-  (if-let [sym (:stop! @project-bindings)]
+  (if-let [sym (:stop! (get-project-bindings))]
     ((requiring-resolve sym))
     (println "No :stop! defined in project :local")))
 
