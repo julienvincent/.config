@@ -1,15 +1,18 @@
 (in-ns 'user)
 
-(require '[clj-reload.core :as reload])
-(require '[malli.dev :as dev])
-(require '[clojure.string :as str])
-(require '[clojure.edn :as edn])
-(require '[clojure.java.io :as io])
-(require '[puget.printer :as puget])
-(require '[clojure.math :as math])
-(require '[clj-commons.format.exceptions :as pretty.exceptions])
-(import '[java.nio.file Paths])
-(import '[java.net URI])
+(require
+ '[clj-reload.core :as reload]
+ '[malli.dev :as dev]
+ '[clojure.string :as str]
+ '[clojure.edn :as edn]
+ '[clojure.java.io :as io]
+ '[puget.printer :as puget]
+ '[clojure.math :as math]
+ '[clj-commons.format.exceptions :as pretty.exceptions])
+
+(import
+ '[java.nio.file Paths]
+ '[java.net URI])
 
 (defn get-project-bindings []
   (some->> (slurp "deps.local.edn")
@@ -101,8 +104,12 @@
        (.println System/out pretty-string)))))
 
 (defn instrument! []
-  #_(binding [*out* (java.io.PrintWriter. (java.io.OutputStreamWriter. System/out))]
-      (dev/start!)))
+  (try
+    (binding [*out* (java.io.PrintWriter. (java.io.OutputStreamWriter. System/out))]
+      (dev/start!))
+    (catch Exception ex
+      (tap> "Failed to initialize malli instrumentation")
+      (tap> ex))))
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn reload-namespaces []
