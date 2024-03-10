@@ -1,3 +1,4 @@
+local theme = require("modules.theme")
 local wezterm = require("wezterm")
 
 local M = {}
@@ -19,32 +20,28 @@ function M.init(config)
 	config.show_new_tab_button_in_tab_bar = false
 	config.tab_max_width = 50
 
-	local scheme = wezterm.color.get_builtin_schemes()["GruvboxDark"]
+	-- These functions are expensive and should not be called in the main event handler as it will
+	-- noticeably slow down the UI.
+	local workspace = wezterm.mux.get_active_workspace()
+	local colors = wezterm.color.get_builtin_schemes()[theme.CURRENT_SCHEME]
+	local prev_scheme = theme.CURRENT_SCHEME
 
-	local tab_bar_bg = scheme.background
+	wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, tab_max_width)
+		if theme.CURRENT_SCHEME ~= prev_scheme then
+			prev_scheme = theme.CURRENT_SCHEME
+			colors = wezterm.color.get_builtin_schemes()[theme.CURRENT_SCHEME]
+		end
 
-	local active_tab_bg = "#d79921"
-	local active_tab_fg = "#3c3836"
+		local tab_bar_bg = colors.background
 
-	local inactive_tab_bg = scheme.background
-	local inactive_tab_fg = scheme.foreground
+		local active_tab_bg = "#d79921"
+		local active_tab_fg = "#3c3836"
 
-	config.colors = {
-		tab_bar = {
-			background = tab_bar_bg,
+		local inactive_tab_bg = colors.background
+		local inactive_tab_fg = colors.foreground
 
-			inactive_tab_hover = {
-				bg_color = inactive_tab_bg,
-				fg_color = inactive_tab_fg,
-
-				intensity = "Bold",
-			},
-		},
-	}
-
-	wezterm.on("format-tab-title", function(tab, tabs, _panes, config, hover, _max_width)
 		local title = tab_title(tab)
-		title = wezterm.truncate_right(title, config.tab_max_width - 6)
+		title = wezterm.truncate_right(title, tab_max_width)
 
 		local icon = wezterm.nerdfonts.pl_left_hard_divider
 		local icon_bg
@@ -72,7 +69,7 @@ function M.init(config)
 
 			if not tab.is_active and not next_tab_is_active then
 				icon = wezterm.nerdfonts.pl_left_soft_divider
-        icon = " "
+				icon = " "
 				icon_fg = inactive_tab_fg
 			end
 		end
@@ -102,8 +99,6 @@ function M.init(config)
 			{ Foreground = { Color = icon_fg } },
 			{ Text = icon },
 		}
-
-		local workspace = wezterm.mux.get_active_workspace()
 
 		if is_first_tab and workspace ~= "term" then
 			if tab.is_active then

@@ -9,7 +9,6 @@ config.window_close_confirmation = "AlwaysPrompt"
 
 config.enable_kitty_graphics = true
 
-config.color_scheme = "GruvboxDark"
 config.font = wez.font("MonoLisa", {
 	weight = "Medium",
 })
@@ -27,11 +26,13 @@ config.window_padding = {
 
 config.cursor_thickness = "1.5pt"
 
-modules.init(config)
+config.colors = {
+	cursor_bg = "#928374",
+	cursor_border = "#928374",
+	split = "#928374",
+}
 
-config.colors["cursor_bg"] = "#928374"
-config.colors["cursor_border"] = "#928374"
-config.colors["split"] = "#928374"
+modules.init(config)
 
 config.underline_thickness = "1.2pt"
 config.underline_position = "150%"
