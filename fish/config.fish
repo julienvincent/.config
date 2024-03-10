@@ -7,6 +7,8 @@ set -gx EDITOR nvim
 set -g fish_autosuggestion_enabled 0
 set fish_greeting ""
 
+alias hr 'history --merge'  # read and merge history from disk
+
 alias p="pnpm"
 alias pl="pnpm link --global"
 alias px="pnpx"
