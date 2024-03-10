@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local panes = require("modules.panes")
 
 local M = {}
 
@@ -24,10 +25,15 @@ function M.init(config)
 			key = "Enter",
 			action = action.TogglePaneZoomState,
 		},
+		{
+			mods = "CMD",
+			key = "b",
+			action = wezterm.action_callback(panes.balance_panes("y")),
+		},
 
 		{
-			key = "w",
 			mods = "CMD",
+			key = "w",
 			action = action.CloseCurrentPane({ confirm = false }),
 		},
 
