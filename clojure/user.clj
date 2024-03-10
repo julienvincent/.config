@@ -7,12 +7,37 @@
 (require '[puget.printer :as puget])
 (require '[clojure.math :as math])
 (require '[clj-commons.format.exceptions :as pretty.exceptions])
+(import '[java.nio.file Paths])
+(import '[java.net URI])
 
 (def ^:private m2-dir
   (str (System/getenv "HOME") "/.m2"))
 
 (def ^:private gitlibs-dir
   (str (System/getenv "HOME") "/.gitlibs"))
+
+(defn- is-parent [parent child]
+  (let [parent (-> (Paths/get (URI. (str "file://" parent)))
+                   .toAbsolutePath
+                   .normalize)
+        child (-> (Paths/get (URI. (str "file://" child)))
+                  .toAbsolutePath
+                  .normalize)]
+
+    (.startsWith child parent)))
+
+(defn- remove-parents [classpath]
+  (->> classpath
+       (sort-by identity (fn [left right]
+                           (compare (count left) (count right))))
+       (reduce
+        (fn [paths path]
+          (let [paths (filter
+                       (fn [existing]
+                         (not (is-parent existing path)))
+                       paths)]
+            (conj paths path)))
+        [])))
 
 (def ^:private classpath
   (into #{}
@@ -67,7 +92,12 @@
   (instrument!))
 
 (instrument!)
-(reload/init {:dirs classpath})
+(try
+  (reload/init {:dirs (remove-parents classpath)})
+  nil
+  (catch Exception ex
+    (tap> "Failed to initialize clj-reload")
+    (tap> ex)))
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defmacro with-time [name & body]
