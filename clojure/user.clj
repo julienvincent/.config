@@ -4,13 +4,13 @@
 (require '[malli.dev :as dev])
 (require '[clojure.string :as str])
 (require '[clojure.java.io :as io])
-(require '[clojure.pprint :as pprint])
 (require '[puget.printer :as puget])
+(require '[clojure.math :as math])
 
-(def m2-dir
+(def ^:private m2-dir
   (str (System/getenv "HOME") "/.m2"))
 
-(def classpath
+(def ^:private classpath
   (into #{}
         (comp
          (filter (fn [path]
@@ -28,27 +28,27 @@
 
         (str/split (System/getProperty "java.class.path") #":")))
 
-(reload/init {:dirs classpath})
+(def ^:private puget-opts
+  {:print-color true
+   :color-scheme {:delimiter nil
+                  :tag [:white]
+
+                  :nil [:bold :black]
+                  :boolean [:green]
+                  :number [:magenta :bold]
+                  :string [:bold :green]
+                  :character [:bold :magenta]
+                  :keyword [:bold :red]
+                  :symbol [:white :bold]
+
+                  :function-symbol [:bold :blue]
+                  :class-delimiter [:blue]
+                  :class-name [:bold :blue]}})
 
 (add-tap
- (bound-fn*
-  (fn [data]
-    (binding [*out* (java.io.PrintWriter. (java.io.OutputStreamWriter. System/out))]
-      (puget/pprint data {:print-color true
-                          :color-scheme {:delimiter nil
-                                         :tag       [:white]
-
-                                         :nil       [:bold :black]
-                                         :boolean   [:green]
-                                         :number    [:magenta :bold]
-                                         :string    [:bold :green]
-                                         :character [:bold :magenta]
-                                         :keyword   [:bold :red]
-                                         :symbol    [:white :bold]
-
-                                         :function-symbol [:bold :blue]
-                                         :class-delimiter [:blue]
-                                         :class-name      [:bold :blue]}})))))
+ (fn [data]
+   (let [pretty-string (puget/pprint-str data puget-opts)]
+     (.println System/out pretty-string))))
 
 (defn instrument! []
   #_(binding [*out* (java.io.PrintWriter. (java.io.OutputStreamWriter. System/out))]
@@ -59,3 +59,16 @@
   (instrument!))
 
 (instrument!)
+(reload/init {:dirs classpath})
+
+(defmacro with-time [name & body]
+  `(let [start# (System/nanoTime)
+         result# (do ~@body)
+         end# (System/nanoTime)
+         delta# (-> (- end# start#)
+                    (/ 10000.0)
+                    math/round
+                    (/ 100.0))]
+     (prn (str "Time [" ~name "]: " delta# "ms"))
+     (tap> [~name, delta#])
+     result#))
