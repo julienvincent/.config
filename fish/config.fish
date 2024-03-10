@@ -4,6 +4,8 @@ end
 
 set -gx EDITOR nvim
 
+set -gx TAOENSSO_TIMBRE_CONFIG_EDN "{:min-level :error}"
+
 set -g fish_autosuggestion_enabled 0
 set fish_greeting ""
 
