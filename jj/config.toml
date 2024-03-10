@@ -30,12 +30,11 @@ current = { fg = "yellow", bg = "black", bold = true, underline = true }
 
 [revset-aliases]
 
-'unmerged()' = 'master@origin..'
-'local()' = 'master@origin..mine()'
+'local()' = 'trunk()..mine()'
 
 [revsets]
 
-log = 'master..@ | master | @:: | @-::'
+log = 'trunk()..@ | trunk() | @:: | @-::'
 
 [templates]
 # log = 'log_oneline'
