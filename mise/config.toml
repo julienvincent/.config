@@ -1,7 +1,7 @@
 [tools]
 node = "21"
 clojure = "1.11.1.1435"
-rust = "1.76"
+rust = "nightly-2023-12-30"
 java = "temurin-21.0.0+35.0.LTS"
 go = "1.22.0"
 python = "3.11.3"
