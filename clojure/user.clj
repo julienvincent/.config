@@ -10,7 +10,7 @@
   (str (System/getenv "HOME") "/.m2"))
 
 (def classpath
-  (into []
+  (into #{}
         (comp
          (filter (fn [path]
                    (not (str/starts-with? path m2-dir))))
@@ -19,7 +19,11 @@
                      (and (.exists file)
                           (.isDirectory file)))))
          (filter (fn [path]
-                   (not (some #{path} #{"dev" "local"})))))
+                   (not (some #{path} #{"dev" "local"}))))
+         (map (fn [path]
+                (->> (java.io.File. path)
+                     .getAbsolutePath
+                     str))))
 
         (str/split (System/getProperty "java.class.path") #":")))
 
