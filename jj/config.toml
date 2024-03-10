@@ -35,7 +35,7 @@ current = { fg = "yellow", bg = "black", bold = true, underline = true }
 
 [revsets]
 
-log = 'master..@ | master'
+log = 'master..@ | master | @:: | @-::'
 
 [templates]
 # log = 'log_oneline'
