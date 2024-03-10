@@ -12,7 +12,7 @@ config.font = wez.font("MonoLisa", {
 	weight = "Medium",
 })
 config.font_size = 13
-config.line_height = 1.2
+config.line_height = 1.1
 
 config.freetype_load_target = "Normal"
 
