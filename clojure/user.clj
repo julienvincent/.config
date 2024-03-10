@@ -120,19 +120,27 @@
     (when enable
       (try
         (dev/start!
-         {:report (fn [key data]
-                    (when (:log report)
-                      (tap> {:type key
-                             :data data}))
+         {:report
+          (fn [key data]
+            (when (= :malli.core/register-function-schema key)
+              (throw (ex-info (str "Failed to register function schema for "
+                                   (:ns data) "/" (:name data))
 
-                    (when (:throw report)
-                      (throw (ex-info (str "Function "
-                                           (:fn-name data)
-                                           " schema not satisfied - "
-                                           key)
-                                      {:args (:args data)
-                                       :type key
-                                       :fn (:fn-name data)}))))})
+                              {:ns (:ns data)
+                               :name (:name data)})))
+
+            (when (:log report)
+              (tap> {:type key
+                     :data data}))
+
+            (when (:throw report)
+              (throw (ex-info (str "Function "
+                                   (:fn-name data)
+                                   " schema not satisfied - "
+                                   key)
+                              {:args (:args data)
+                               :type key
+                               :fn (:fn-name data)}))))})
 
         (catch Exception ex
           (tap> "Failed to initialize malli instrumentation")
