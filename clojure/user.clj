@@ -14,20 +14,23 @@
  '[java.nio.file Paths]
  '[java.net URI])
 
-(defn get-project-bindings []
+(defn- get-local-config []
   (some->> (slurp "deps.local.edn")
            (edn/read-string)
-           :aliases
-           :local
-           :bindings))
+           :local/config))
 
+(defn- get-binding [binding]
+  (get-in (get-local-config) [:bindings binding]))
+
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn restart-system []
-  (if-let [sym (:restart! (get-project-bindings))]
+  (if-let [sym (get-binding :restart!)]
     ((requiring-resolve sym))
     (println "No :restart! defined in project :local")))
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn stop-system []
-  (if-let [sym (:stop! (get-project-bindings))]
+  (if-let [sym (get-binding :stop!)]
     ((requiring-resolve sym))
     (println "No :stop! defined in project :local")))
 
@@ -104,12 +107,35 @@
        (.println System/out pretty-string)))))
 
 (defn instrument! []
-  (try
-    (binding [*out* (java.io.PrintWriter. (java.io.OutputStreamWriter. System/out))]
-      (dev/start!))
-    (catch Exception ex
-      (tap> "Failed to initialize malli instrumentation")
-      (tap> ex))))
+  (let [config (:instrumentation (get-local-config))
+        {:keys [enable report]
+         :or {enable true
+              report :throw}} config
+
+        report (if (set? report)
+                 report
+                 #{report})]
+
+    (when enable
+      (try
+        (dev/start!
+         {:report (fn [key data]
+                    (when (:log report)
+                      (tap> {:type key
+                             :data data}))
+
+                    (when (:throw report)
+                      (throw (ex-info (str "Function "
+                                           (:fn-name data)
+                                           " schema not satisfied - "
+                                           key)
+                                      {:args (:args data)
+                                       :type key
+                                       :fn (:fn-name data)}))))})
+
+        (catch Exception ex
+          (tap> "Failed to initialize malli instrumentation")
+          (tap> ex))))))
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn reload-namespaces []
