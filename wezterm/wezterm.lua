@@ -5,7 +5,9 @@ local modules = require("modules")
 local config = wez.config_builder()
 
 config.check_for_updates = false
-config.window_close_confirmation = 'AlwaysPrompt'
+config.window_close_confirmation = "AlwaysPrompt"
+
+config.enable_kitty_graphics = true
 
 config.color_scheme = "GruvboxDark"
 config.font = wez.font("MonoLisa", {
