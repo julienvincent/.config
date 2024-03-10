@@ -6,9 +6,7 @@ email = "m@julienvincent.io"
 default-command = "log-reversed"
 diff-instructions = false
 paginate = "never"
-# diff.tool = ["difft", "--color=always", "--tab-width=2", "--display=side-by-side", "$left", "$right"]
-# diff-editor="dirdiff"
-# diff-editor="nvim -c :JujutsuDiff --left $left --right $right"
+diff-editor = ":builtin"
 
 [aliases]
 log-reversed = ["log", "--reversed"]
@@ -20,11 +18,48 @@ push = ["git", "push"]
 auto-local-branch = true
 push-branch-prefix = "jv/change-"
 
-
 [signing]
-show-signatures = false
 sign-all = true
 key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFrtvt1/rcCsF7Jf4zgmu/vjRnzEXMlXzt8FmouxCxFH"
 backend = "ssh"
 backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 backends.ssh.allowed-signers = "/Users/julienvincent/.ssh/allowed-signers"
+
+[colors]
+current = { fg = "yellow", bg = "black", bold = true, underline = true }
+
+[revset-aliases]
+
+'unmerged()' = 'master@origin..'
+'local()' = 'master@origin..mine()'
+
+[revsets]
+
+log = 'master..@ | master'
+
+[templates]
+# log = 'log_oneline'
+
+[template-aliases]
+log_oneline = '''
+if(root,
+  builtin_log_root(change_id, commit_id),
+  label(if(current_working_copy, "working_copy"),
+    concat(
+      separate(" ",
+        if(current_working_copy, label("current", "[=]")),
+        builtin_change_id_with_hidden_and_divergent_info,
+        format_short_commit_id(commit_id),
+        branches,
+        tags,
+        working_copies,
+        git_head,
+        if(conflict, label("conflict", "conflict")),
+        if(empty, label("empty", "(empty)")),
+        if(description, description.first_line(), description_placeholder),
+        format_short_signature(author),
+      ) ++ "\n",
+    ),
+  )
+)
+'''
