@@ -1,0 +1,1 @@
+zed completion fish | source
