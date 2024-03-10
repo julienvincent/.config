@@ -163,4 +163,11 @@
      (tap> [~name, delta#])
      result#))
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+(defn tap>> [& args]
+  (doseq [arg args]
+    (tap> arg))
+
+  (last args))
+
 nil
