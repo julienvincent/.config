@@ -34,4 +34,4 @@ current = { fg = "yellow", bg = "black", bold = true, underline = true }
 
 [revsets]
 
-log = 'trunk()..@ | trunk() | @:: | @-::'
+log = 'roots(trunk()..@):: | trunk()'
