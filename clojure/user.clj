@@ -10,11 +10,15 @@
 (def ^:private m2-dir
   (str (System/getenv "HOME") "/.m2"))
 
+(def ^:private gitlibs-dir
+  (str (System/getenv "HOME") "/.gitlibs"))
+
 (def ^:private classpath
   (into #{}
         (comp
          (filter (fn [path]
-                   (not (str/starts-with? path m2-dir))))
+                   (and (not (str/starts-with? path m2-dir))
+                        (not (str/starts-with? path gitlibs-dir)))))
          (filter (fn [path]
                    (let [file (io/file path)]
                      (and (.exists file)
@@ -54,6 +58,7 @@
   #_(binding [*out* (java.io.PrintWriter. (java.io.OutputStreamWriter. System/out))]
       (dev/start!)))
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn reload-namespaces []
   (reload/reload)
   (instrument!))
@@ -61,6 +66,7 @@
 (instrument!)
 (reload/init {:dirs classpath})
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defmacro with-time [name & body]
   `(let [start# (System/nanoTime)
          result# (do ~@body)
