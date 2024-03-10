@@ -3,12 +3,31 @@
 (require '[clj-reload.core :as reload])
 (require '[malli.dev :as dev])
 (require '[clojure.string :as str])
+(require '[clojure.edn :as edn])
 (require '[clojure.java.io :as io])
 (require '[puget.printer :as puget])
 (require '[clojure.math :as math])
 (require '[clj-commons.format.exceptions :as pretty.exceptions])
 (import '[java.nio.file Paths])
 (import '[java.net URI])
+
+(def project-bindings
+  (delay
+    (some->> (slurp "deps.local.edn")
+             (edn/read-string)
+             :aliases
+             :local
+             :bindings)))
+
+(defn restart-system []
+  (if-let [sym (:restart! @project-bindings)]
+    ((requiring-resolve sym))
+    (println "No :restart! defined in project :local")))
+
+(defn stop-system []
+  (if-let [sym (:stop! @project-bindings)]
+    ((requiring-resolve sym))
+    (println "No :stop! defined in project :local")))
 
 (def ^:private m2-dir
   (str (System/getenv "HOME") "/.m2"))
