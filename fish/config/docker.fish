@@ -1,1 +1,1 @@
-docker completion fish | source
+# docker completion fish | source

@@ -26,5 +26,5 @@ alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.config/nvim"
 alias vrest="nvim ~/.http"
 
-mise activate fish | source
+# mise activate fish | source
 starship init fish | source

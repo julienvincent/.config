@@ -1,1 +1,1 @@
-kubectl completion fish | source
+# kubectl completion fish | source

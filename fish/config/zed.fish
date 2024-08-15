@@ -1,1 +1,1 @@
-zed completion fish | source
+# zed completion fish | source

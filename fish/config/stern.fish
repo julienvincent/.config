@@ -1,1 +1,1 @@
-stern --completion=fish | source
+# stern --completion=fish | source

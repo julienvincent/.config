@@ -6,7 +6,7 @@ email = "m@julienvincent.io"
 default-command = "log-reversed"
 diff-instructions = false
 paginate = "never"
-diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+# diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 
 [aliases]
 log-reversed = ["log", "--reversed"]
@@ -22,8 +22,8 @@ push-branch-prefix = "jv/change-"
 sign-all = true
 key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFrtvt1/rcCsF7Jf4zgmu/vjRnzEXMlXzt8FmouxCxFH"
 backend = "ssh"
-backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-backends.ssh.allowed-signers = "/Users/julienvincent/.ssh/allowed-signers"
+# backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+# backends.ssh.allowed-signers = "/Users/julienvincent/.ssh/allowed-signers"
 
 [colors]
 current = { fg = "yellow", bg = "black", bold = true, underline = true }
