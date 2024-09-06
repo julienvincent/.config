@@ -1,8 +1,14 @@
 function clj-update
-  clojure -Sdeps '{:deps {com.github.liquidz/antq {:mvn/version "2.9.1221"}}}' \
-    -M -m antq.core \
-    --skip=github-action \
-    --skip=babashka \
-    --upgrade \
-    $argv
+  set focus
+  
+  if test (count $argv) -gt 0
+    set focus :focus "\"$argv\""
+  end
+
+  clojure -Tantq outdated \
+    :upgrade true \
+    :force true \
+    :skip \"github-action\" \
+    :skip \"babashka\" \
+    $focus
 end
