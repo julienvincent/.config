@@ -138,9 +138,10 @@
                                    (:fn-name data)
                                    " schema not satisfied - "
                                    key)
-                              {:args (:args data)
-                               :type key
-                               :fn (:fn-name data)}))))})
+                              (cond-> {:input (:args data)
+                                       :type key
+                                       :fn (:fn-name data)}
+                                (:value data) (assoc :output (:value data)))))))})
 
         (catch Exception ex
           (tap> "Failed to initialize malli instrumentation")
