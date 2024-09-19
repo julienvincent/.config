@@ -28,7 +28,7 @@
                            (compare (count left) (count right))))
        (reduce
         (fn [paths path]
-          (let [paths (filter
+          (let [paths (filterv
                        (fn [existing]
                          (not (is-parent existing path)))
                        paths)]

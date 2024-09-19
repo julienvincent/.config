@@ -21,12 +21,26 @@
     (tap> ex)))
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
-(defn run-binding! [binding-name]
+(defn list-bindings [binding-name]
   (if-let [sym (dev.config/get-binding binding-name)]
-    (if-let [f (requiring-resolve sym)]
-      (f)
-      (println (str "No " binding-name " var found")))
-    (println "No :restart! defined in project :local"))
+    (if (vector? sym)
+      sym
+      [sym])
+    []))
+
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+(defn run-binding! [binding-name]
+  (if-let [sym (if (symbol? binding-name)
+                 binding-name
+                 (dev.config/get-binding binding-name))]
+    (let [sym (if (vector? sym)
+                (first sym)
+                sym)]
+      (if-let [f (requiring-resolve sym)]
+        (do (println (str "Running " sym))
+            (f))
+        (println (str "No " binding-name " var found"))))
+    (println (str "No " binding-name " defined in project :local/config")))
   nil)
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}

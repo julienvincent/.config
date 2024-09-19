@@ -1,24 +1,35 @@
 (ns io.julienvincent.dev.tap
   (:require
    [clj-commons.format.exceptions :as pretty.exceptions]
-   [puget.printer :as puget]))
+   [zprint.core :as zprint]))
 
-(def ^:private puget-opts
-  {:print-color true
-   :color-scheme {:delimiter nil
-                  :tag [:white]
-
-                  :nil [:bold :black]
-                  :boolean [:green]
-                  :number [:magenta :bold]
-                  :string [:bold :green]
-                  :character [:bold :magenta]
-                  :keyword [:bold :red]
-                  :symbol [:white :bold]
-
-                  :function-symbol [:bold :blue]
-                  :class-delimiter [:blue]
-                  :class-name [:bold :blue]}})
+(def ^:private opts
+  {:map {:comma? false}
+   :color-map {:brace [:white :bold],
+               :bracket [:white :bold],
+               :keyword [:red :bold]
+               :char [:magenta],
+               :comma [:white],
+               :comment [:white],
+               :deref [:bold :white],
+               :true [:magenta :bold],
+               :false [:magenta :bold],
+               :fn [:bright-green],
+               :hash-brace :white,
+               :hash-paren :green,
+               :left :white,
+               :nil [:magenta],
+               :none [:white],
+               :number [:magenta :bold],
+               :paren [:bold :white],
+               :quote [:green],
+               :regex [:green],
+               :right :none,
+               :string [:bright-green :bold],
+               :symbol [:bold]
+               :syntax-quote-paren [:green],
+               :uneval :magenta,
+               :user-fn [:white]}}),
 
 (defn add-stdout-tap []
   (add-tap
@@ -26,5 +37,5 @@
      (if (instance? Throwable data)
        (binding [pretty.exceptions/*print-level* 100]
          (.println System/out (pretty.exceptions/format-exception data)))
-       (let [pretty-string (puget/pprint-str data puget-opts)]
+       (let [pretty-string (zprint/czprint-str data opts)]
          (.println System/out pretty-string))))))
