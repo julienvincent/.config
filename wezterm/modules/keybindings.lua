@@ -7,6 +7,12 @@ function M.init(config)
   local action = wezterm.action
   config.keys = {
     {
+      key = "i",
+      mods = "CTRL",
+      action = wezterm.action.SendKey({ key = "i", mods = "ALT" }),
+    },
+
+    {
       mods = "CMD",
       key = "d",
       action = action.SplitHorizontal({
