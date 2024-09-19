@@ -38,6 +38,8 @@ logr = ["log", "--reversed"]
 log-oneline = ["log", "-T", "log_oneline_compact", "--no-graph"]
 l = ["log-oneline", "-r", "::@ & ~merges()"]
 
+d = ["show", "--no-patch"]
+
 fetch = ["git", "fetch"]
 push = ["git", "push"]
 
