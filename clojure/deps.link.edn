@@ -4,9 +4,9 @@
 
            :nrepl {:extra-deps {io.julienvincent/dev {:git/url "https://github.com/julienvincent/.config"
                                                       :git/sha "3268b13c38eba65c0baa94745201c61299f06cd8"
+                                nrepl/nrepl {:mvn/version "1.4.0"}
                                                       :deps/root "clojure"}
-                                nrepl/nrepl {:mvn/version "1.3.0"}
-                                cider/cider-nrepl {:mvn/version "0.50.1"}}
+                                cider/cider-nrepl {:mvn/version "0.57.0"}}
 
                    :jvm-opts ["-Djdk.attach.allowAttachSelf"
                               "-XX:+UseG1GC"
