@@ -1,3 +1,3 @@
 function repl
-  clojure -Mnrepl:local:test
+    clojure -Mnrepl:local:test
 end
