@@ -49,6 +49,7 @@ push = ["git", "push"]
 auto-local-bookmark = true
 push-bookmark-prefix = "jv/ref-"
 push-new-bookmarks = true
+write-change-id-header = true
 
 [signing]
 behavior = "own"
