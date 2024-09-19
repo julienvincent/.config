@@ -5,7 +5,12 @@ set -g _atuin_history_original_buffer ""
 set -g _atuin_history_original_cursor_pos ""
 
 function _atuin_history_search
-    set h (RUST_LOG=error atuin search $_atuin_history_original_buffer --limit 1 --cmd-only --offset $argv[1] --search-mode prefix)
+    set h (RUST_LOG=error atuin search $_atuin_history_original_buffer \
+            --limit 1 \
+            --cmd-only \
+            --offset $argv[1] \
+            --search-mode prefix \
+            --filter-mode session)
 
     if test $status -eq 0
         set -g _atuin_history_offset $argv[1]
