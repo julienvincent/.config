@@ -66,12 +66,15 @@ current = { fg = "yellow", bg = "black", bold = true, underline = true }
 
 [revset-aliases]
 
+'stack(tip)' = "fork_point(trunk():: | tip)::tip | trunk() | tip-::"
+'expand(tip)' = "fork_point(trunk():: | tip):: | tip"
+
 local = 'trunk()..mine()'
-extended = "fork_point(trunk():: | @):: | trunk()"
+expand = "expand(@)"
 
 [revsets]
 
-log = "fork_point(trunk():: | @)::@ | trunk()"
+log = "stack(@)"
 
 [template-aliases]
 'format_as_date(timestamp)' = 'timestamp.local().format("%Y-%m-%d")'
