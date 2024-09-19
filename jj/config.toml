@@ -1,4 +1,4 @@
-"$schema" = "https://jj-vcs.github.io/jj/v0.31.0/config-schema.json"
+"$schema" = "https://jj-vcs.github.io/jj/v0.33.0/config-schema.json"
 
 [user]
 name = "Julien Vincent"
@@ -50,6 +50,7 @@ jj log --reversed -Tchangelog --no-graph -r "$@ & ~merges()"
 auto-local-bookmark = true
 push-new-bookmarks = true
 write-change-id-header = true
+colocate = true
 
 [signing]
 behavior = "own"
