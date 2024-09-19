@@ -42,6 +42,7 @@ function __show_help
     echo "  -f, --from <ref>   Start diff from this revision"
     echo "  -t, --to <ref>     End diff at this revision"
     echo "  -s, --split        Split the diff by commit"
+    echo "  -S, --symmetric    View the symmetric difference (a...b)"
     echo "  -h, --help         Show this help message"
     echo
     echo "Examples:"
@@ -67,6 +68,7 @@ function jd
     set -l options (fish_opt --short=f --long=from --required-val)
     set options $options (fish_opt --short=t --long=to --required-val)
     set options $options (fish_opt --short=s --long=split)
+    set options $options (fish_opt --short=S --long=symmetric)
 
     argparse $options -- $argv
     or return
@@ -119,7 +121,11 @@ function jd
 
     # Construct diff range based on provided arguments
     if test -n "$from_commit" -a -n "$to_commit"
-        set diff_range "$from_commit..$to_commit"
+        if set -q _flag_symmetric
+            set diff_range "$from_commit...$to_commit"
+        else
+            set diff_range "$from_commit..$to_commit"
+        end
     else if test -n "$to_commit"
         if __is_empty $to_commit
             echo "Empty revision. No changes to show."
