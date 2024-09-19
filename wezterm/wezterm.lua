@@ -52,4 +52,6 @@ config.window_frame = {
 	border_top_height = "10",
 }
 
+config.max_fps = 120
+
 return config
