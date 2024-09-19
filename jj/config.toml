@@ -8,7 +8,7 @@ diff-instructions = false
 
 diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 
-# This is wrapped in sh -c so that I can expand the $HOME env var
+# This is wrapped in 'sh -c' so that I can expand the $HOME env var
 pager = ["sh", "-c", "delta --config $HOME/.config/delta/config.ini"]
 diff.format="git"
 
@@ -26,8 +26,9 @@ fetch = ["git", "fetch"]
 push = ["git", "push"]
 
 [git]
-auto-local-branch = true
+auto-local-bookmark = true
 push-bookmark-prefix = "jv/ref-"
+push-new-bookmarks = true
 
 [signing]
 sign-all = true
