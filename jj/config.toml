@@ -10,11 +10,18 @@ diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 
 # This is wrapped in 'sh -c' so that I can expand the $HOME env var
 pager = ["sh", "-c", "delta --config $HOME/.config/delta/config.ini"]
-diff.format="git"
+diff.format = "git"
 
 [merge-tools.dt]
 program = "difft"
-diff-args = ["--color=always", "--tab-width=2", "--display=side-by-side", "$left", "$right"]
+diff-args = [
+  "--color=always",
+  "--tab-width=2",
+  "--display=side-by-side",
+  "$left",
+  "$right",
+]
+
 
 [aliases]
 logr = ["log", "--reversed"]
