@@ -51,7 +51,7 @@ push-bookmark-prefix = "jv/ref-"
 push-new-bookmarks = true
 
 [signing]
-sign-all = true
+behavior = "own"
 backend = "ssh"
 key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFrtvt1/rcCsF7Jf4zgmu/vjRnzEXMlXzt8FmouxCxFH"
 backends.ssh.allowed-signers = "~/.ssh/allowed-signers"
