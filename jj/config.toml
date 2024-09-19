@@ -26,8 +26,8 @@ diff-args = [
 [aliases]
 logr = ["log", "--reversed"]
 
-log-oneline = ["log", "-T", "builtin_log_oneline", "--no-graph"]
-l = ["log-oneline", "-r", "::@"]
+log-oneline = ["log", "-T", "log_oneline_compact", "--no-graph"]
+l = ["log-oneline", "-r", "::@ & ~merges()"]
 
 fetch = ["git", "fetch"]
 push = ["git", "push"]
@@ -53,3 +53,34 @@ current = { fg = "yellow", bg = "black", bold = true, underline = true }
 [revsets]
 
 log = "fork_point(trunk():: | @)::@ | trunk()"
+
+[template-aliases]
+'format_as_date(timestamp)' = 'timestamp.local().format("%Y-%m-%d")'
+
+log_oneline_compact = '''
+if(root,
+  format_root_commit(self),
+  label(if(current_working_copy, "working_copy"),
+    concat(
+      separate(" ",
+        format_short_change_id_with_hidden_and_divergent_info(self),
+        format_short_commit_id(commit_id),
+        pad_end(10, truncate_end(10, author.email())),
+        format_as_date(commit_timestamp(self)),
+        bookmarks,
+        tags,
+        working_copies,
+        if(git_head, label("git_head", "git_head()")),
+        if(conflict, label("conflict", "conflict")),
+        if(config("ui.show-cryptographic-signatures").as_boolean(),
+          format_short_cryptographic_signature(signature)),
+        if(empty, label("empty", "(empty)")),
+        if(description,
+          description.first_line(),
+          label(if(empty, "empty"), description_placeholder),
+        ),
+      ) ++ "\n",
+    ),
+  )
+)
+'''
