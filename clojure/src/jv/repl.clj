@@ -1,4 +1,4 @@
-(ns local
+(ns jv.repl
   (:require
    [clj-async-profiler.core :as prof]
    [clj-reload.core :as reload]
