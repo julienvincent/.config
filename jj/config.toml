@@ -41,4 +41,4 @@ current = { fg = "yellow", bg = "black", bold = true, underline = true }
 
 [revsets]
 
-log = 'roots(trunk()..@):: | trunk()'
+log = "fork_point(trunk():: | @)::@ | trunk()"
