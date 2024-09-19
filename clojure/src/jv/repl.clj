@@ -3,6 +3,7 @@
    [clj-async-profiler.core :as prof]
    [clj-reload.core :as reload]
    [clojure.math :as math]
+   [clojure.repl.deps :as repl.deps]
    [criterium.core :as criterium]
    [io.julienvincent.dev.config :as dev.config]
    [io.julienvincent.dev.cp :as dev.cp]
@@ -32,6 +33,10 @@
 (defn reload-namespaces []
   (reload/reload)
   (dev.malli/setup-malli-instrumentation (:instrumentation (dev.config/get-local-config))))
+
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+(defn sync-deps []
+  (repl.deps/sync-deps))
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn start-profiler []
