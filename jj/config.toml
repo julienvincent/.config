@@ -1,3 +1,5 @@
+"$schema" = "https://jj-vcs.github.io/jj/v0.29.0/config-schema.json"
+
 [user]
 name = "Julien Vincent"
 email = "m@julienvincent.io"
@@ -41,6 +43,8 @@ logr = ["log", "--reversed"]
 
 log-oneline = ["log", "-T", "log_oneline_compact", "--no-graph"]
 l = ["log-oneline", "-r", "::@ & ~merges()"]
+
+changelog = ["log", "--reversed", "-T", "changelog", "--no-graph"]
 
 fetch = ["git", "fetch"]
 push = ["git", "push"]
@@ -98,4 +102,10 @@ if(root,
     ),
   )
 )
+'''
+
+# Use with:
+# jj changelog -r v0.3.0::master
+changelog = '''
+"+ " ++ description.first_line() ++ " in " ++ format_short_commit_id(commit_id) ++ "\n"
 '''
