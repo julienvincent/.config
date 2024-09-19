@@ -10,7 +10,7 @@ config.window_close_confirmation = "AlwaysPrompt"
 config.enable_kitty_graphics = true
 
 config.font = wez.font("MonoLisa", {
-	weight = "Medium",
+  weight = "Medium",
 })
 config.font_size = 13
 config.line_height = 1.1
@@ -18,18 +18,18 @@ config.line_height = 1.1
 config.freetype_load_target = "Normal"
 
 config.window_padding = {
-	left = 10,
-	right = 10,
-	top = 10,
-	bottom = 0,
+  left = 10,
+  right = 10,
+  top = 10,
+  bottom = 0,
 }
 
 config.cursor_thickness = "1.5pt"
 
 config.colors = {
-	cursor_bg = "#928374",
-	cursor_border = "#928374",
-	split = "#928374",
+  cursor_bg = "#928374",
+  cursor_border = "#928374",
+  split = "#928374",
 }
 
 modules.init(config)
@@ -40,8 +40,8 @@ config.underline_position = "150%"
 config.selection_word_boundary = " \t\n{}[]()\"'`*:"
 
 config.inactive_pane_hsb = {
-	saturation = 0.5,
-	brightness = 0.6,
+  saturation = 0.5,
+  brightness = 0.6,
 }
 
 config.term = "wezterm"
@@ -49,7 +49,7 @@ config.term = "wezterm"
 config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 
 config.window_frame = {
-	border_top_height = "10",
+  border_top_height = "10",
 }
 
 config.max_fps = 120

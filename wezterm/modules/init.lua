@@ -8,12 +8,12 @@ local tabs = require("modules.tabs")
 local M = {}
 
 function M.init(config)
-	keys.init(config)
-	mouse.init(config)
-	tabs.init(config)
-	term.init(config)
-	theme.init(config)
-	panes.init()
+  keys.init(config)
+  mouse.init(config)
+  tabs.init(config)
+  term.init(config)
+  theme.init(config)
+  panes.init()
 end
 
 return M
