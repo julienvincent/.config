@@ -64,6 +64,7 @@ current = { fg = "yellow", bg = "black", bold = true, underline = true }
 
 'stack(tip)' = "fork_point(trunk():: | tip)::tip | trunk() | tip-::"
 'expand(tip)' = "fork_point(trunk():: | tip):: | tip"
+'find(from, to)' = "fork_point(to:: | from)::from | fork_point(to:: | from)::to"
 
 local = 'trunk()..mine()'
 expand = "expand(@)"
