@@ -11,3 +11,9 @@ enter_accept = false
 search_mode_shell_up_key_binding = "prefix"
 
 keymap_cursor = { emacs = "steady-underline", vim_insert = "steady-underline", vim_normal = "steady-block" }
+
+[keys]
+scroll_exits = false
+
+[theme]
+name = "gruvbox"

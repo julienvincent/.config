@@ -1,0 +1,19 @@
+[theme]
+name = "gruvbox"
+
+[colors]
+AlertInfo = "#b0b846" # green
+# Timestamp info
+Guidance = "#e9b143" # yellow
+# Default text color
+Base = "#e2cca9" # whitish
+
+Important = "#f28534" # orange
+# Preview text
+Annotation = "#e9b143" # bg_yellow
+
+AlertWarn = "#e9b143" # yellow
+# Selected text, and failed status code
+AlertError = "#f2594b" # red
+
+Title = "#d3869b" # purple
