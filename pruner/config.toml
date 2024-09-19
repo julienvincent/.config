@@ -1,19 +1,11 @@
 query_paths = ["queries"]
 
 [grammars]
-
-sql = { url = "https://github.com/derekstride/tree-sitter-sql", rev = "gh-pages" }
 clojure = "https://github.com/sogaiu/tree-sitter-clojure"
 markdown = "https://github.com/MDeiml/tree-sitter-markdown"
-
-[languages]
-
-markdown = ["prettier"]
-sql = ["pg_format"]
-clojure = ["cljfmt"]
+rust = "https://github.com/tree-sitter/tree-sitter-rust"
 
 [formatters]
-
 prettier = { cmd = "prettier", args = [
   "--prose-wrap=always",
   "--print-width=$textwidth",
@@ -32,3 +24,28 @@ cljfmt = { cmd = "cljfmt", args = [
   "-q",
   "--remove-multiple-non-indenting-spaces",
 ] }
+
+rustfmt = { cmd = "rustfmt", args = ["--emit=stdout", "--edition=2024"] }
+
+[plugins]
+trim_newlines = "https://github.com/pruner-formatter/plugin-trim-newlines/releases/download/v0.1.1/plugin.wasm"
+align_comments = "https://github.com/pruner-formatter/plugin-clojure-comment-formatter/releases/download/v0.1.0/plugin.wasm"
+
+[languages]
+markdown = ["prettier"]
+sql = ["pg_format"]
+clojure = [
+  { formatter = "cljfmt", run_in_root = false, run_in_injections = true },
+  "align_comments",
+  "trim_newlines",
+]
+json = ["prettier"]
+rust = ["rustfmt"]
+
+# Generally when formatting from my editor Clojure is handled by the LSP - so
+# we don't format the root document using cljfmt.
+#
+# In certain cases however, clojure-lsp disables formatting support and in this
+# case we apply this profile to format the root with cljfmt
+[profiles.clojure-full]
+clojure = ["cljfmt", "align_comments", "trim_newlines"]
