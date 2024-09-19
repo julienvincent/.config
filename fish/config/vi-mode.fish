@@ -8,6 +8,6 @@ if status is-interactive
     set fish_vi_force_cursor 1
     fish_vi_key_bindings
 
-    bind -M default \cv edit_command_buffer
-    bind -M insert \cv edit_command_buffer
+    bind -M default ctrl-v edit_command_buffer
+    bind -M insert ctrl-v edit_command_buffer
 end
