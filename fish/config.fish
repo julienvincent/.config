@@ -26,6 +26,8 @@ alias ls="lsd"
 
 alias vim="nvim"
 
+alias oc="opencode"
+
 alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.config/nvim"
 alias vrest="nvim ~/.http"
