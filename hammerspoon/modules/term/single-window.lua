@@ -14,7 +14,6 @@ function M.init()
 				local target_screen = hs.mouse.getCurrentScreen()
 
 				wez_window:moveToScreen(target_screen)
-				wez_window:maximize(0)
 				wez_window:focus()
 			end
 		end
