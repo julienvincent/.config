@@ -2,4 +2,3 @@ deps.local.edn
 .clj-kondo
 .cpcache
 .lsp
-tools
