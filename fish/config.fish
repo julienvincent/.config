@@ -29,3 +29,7 @@ alias vrest="nvim ~/.http"
 
 mise activate fish | source
 starship init fish | source
+
+# The default backwards search uses fuzzy matching instead of exact prefix matching
+bind -M insert \e\[A history-prefix-search-backward
+bind -M insert \e\[B history-prefix-search-forward
