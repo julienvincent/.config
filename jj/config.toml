@@ -44,10 +44,13 @@ logr = ["log", "--reversed"]
 log-oneline = ["log", "-T", "log_oneline_compact", "--no-graph"]
 l = ["log-oneline", "-r", "::@ & ~merges()"]
 
-changelog = ["log", "--reversed", "-T", "changelog", "--no-graph"]
-
 fetch = ["git", "fetch"]
 push = ["git", "push"]
+
+changelog = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+jj log --reversed -Tchangelog --no-graph -r "$@ & ~merges()"
+""", ""]
 
 [git]
 auto-local-bookmark = true
@@ -113,5 +116,8 @@ if(root,
 # Use with:
 # jj changelog -r v0.3.0::master
 changelog = '''
-"+ " ++ description.first_line() ++ " in " ++ format_short_commit_id(commit_id) ++ "\n"
+"+ **" ++ description.first_line() ++ "** in " ++ format_short_commit_id(commit_id) ++ "\n" ++
+  if(description.remove_prefix(description.first_line()).trim_start(),
+    indent("  ", "> " ++ description.remove_prefix(description.first_line()).trim_start().lines().join("\n> ")) ++ "\n",
+    "")
 '''
