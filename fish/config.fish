@@ -2,6 +2,10 @@ for file in ~/.config/fish/config/*.fish
     source $file
 end
 
+for file in ~/.config/fish/config.local/*.fish
+    source $file
+end
+
 set -gx EDITOR nvim
 
 set -gx TAOENSSO_TIMBRE_CONFIG_EDN "{:min-level :error}"
