@@ -1,0 +1,34 @@
+query_paths = ["queries"]
+
+[grammars]
+
+sql = { url = "https://github.com/derekstride/tree-sitter-sql", rev = "gh-pages" }
+clojure = "https://github.com/sogaiu/tree-sitter-clojure"
+markdown = "https://github.com/MDeiml/tree-sitter-markdown"
+
+[languages]
+
+markdown = ["prettier"]
+sql = ["pg_format"]
+clojure = ["cljfmt"]
+
+[formatters]
+
+prettier = { cmd = "prettier", args = [
+  "--prose-wrap=always",
+  "--print-width=$textwidth",
+  "--parser=$language",
+] }
+
+pg_format = { cmd = "pg_format", args = [
+  "--spaces=2",
+  "--wrap-limit=$textwidth",
+  "-",
+] }
+
+cljfmt = { cmd = "cljfmt", args = [
+  "fix",
+  "-",
+  "-q",
+  "--remove-multiple-non-indenting-spaces",
+] }
