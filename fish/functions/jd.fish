@@ -5,7 +5,7 @@ function __get_commit_from_revset
     end
 
     jj log $revset \
-        -T 'commit_id ++ "\n"' \
+        -T 'commit_id.short() ++ "\n"' \
         --no-graph
 end
 
@@ -28,9 +28,7 @@ function __get_commit
         return 1
     end
 
-    # As the commit is shown in the Neovim Diffview panel we shorten it to the 7
-    # char variant which is easier to read.
-    echo $commit | string sub -l 7
+    echo $commit
 end
 
 function __is_empty
@@ -43,14 +41,16 @@ function __show_help
     echo "Options:"
     echo "  -f, --from <ref>   Start diff from this revision"
     echo "  -t, --to <ref>     End diff at this revision"
+    echo "  -s, --split        Split the diff by commit"
     echo "  -h, --help         Show this help message"
     echo
     echo "Examples:"
-    echo "  jd                 Show diff of current commit"
-    echo "  jd <ref>           Show diff of specific commit"
-    echo "  jd --from <ref>    Show diff from <ref> to current"
-    echo "  jd --to <ref>      Show diff of specific commit"
-    echo "  jd --from <ref1> --to <ref2>  Show diff between two commits"
+    echo "  jd                           Show diff of current commit"
+    echo "  jd <ref>                     Show diff of specific commit"
+    echo "  jd --from a                  Show diff from <ref> to current"
+    echo "  jd --to a                    Show diff of specific commit"
+    echo "  jd --from a --to b           Show diff between two commits"
+    echo "  jd --from a --to b --split   Show diff of each commit between a and b"
 end
 
 # This is a super useful little function which allows me to run something like
@@ -66,6 +66,7 @@ function jd
 
     set -l options (fish_opt --short=f --long=from --required-val)
     set options $options (fish_opt --short=t --long=to --required-val)
+    set options $options (fish_opt --short=s --long=split)
 
     argparse $options -- $argv
     or return
@@ -127,5 +128,9 @@ function jd
         set diff_range "$to_commit^!"
     end
 
-    nvim -c "DiffviewOpen $diff_range"
+    if set -q _flag_split
+        nvim -c "DiffviewFileHistory --range=$diff_range --right-only --no-merges"
+    else
+        nvim -c "DiffviewOpen $diff_range"
+    end
 end
