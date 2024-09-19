@@ -8,7 +8,7 @@ end
 
 set -gx EDITOR nvim
 
-set -gx TAOENSSO_TIMBRE_CONFIG_EDN "{:min-level :error}"
+# set -gx TAOENSSO_TIMBRE_CONFIG_EDN "{:min-level :error}"
 
 set -g fish_autosuggestion_enabled 0
 set fish_greeting ""
@@ -30,8 +30,6 @@ alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.config/nvim"
 alias vrest="nvim ~/.http"
 
-starship init fish | source
-
-# The default backwards search uses fuzzy matching instead of exact prefix matching
-bind -M insert up history-prefix-search-backward
-bind -M insert down history-prefix-search-forward
+if status is-interactive
+    starship init fish | source
+end
