@@ -1,11 +1,11 @@
 {:aliases {:dev {:extra-deps {io.julienvincent/dev {:git/url "https://github.com/julienvincent/.config"
-                                                    :git/sha "3268b13c38eba65c0baa94745201c61299f06cd8"
+                                                    :git/sha "9b5379d630647e6d184d9c63ee83b51eebabbded"
                                                     :deps/root "clojure"}}}
 
            :nrepl {:extra-deps {io.julienvincent/dev {:git/url "https://github.com/julienvincent/.config"
-                                                      :git/sha "3268b13c38eba65c0baa94745201c61299f06cd8"
-                                nrepl/nrepl {:mvn/version "1.4.0"}
+                                                      :git/sha "9b5379d630647e6d184d9c63ee83b51eebabbded"
                                                       :deps/root "clojure"}
+                                nrepl/nrepl {:mvn/version "1.4.0"}
                                 cider/cider-nrepl {:mvn/version "0.57.0"}}
 
                    :jvm-opts ["-Djdk.attach.allowAttachSelf"
