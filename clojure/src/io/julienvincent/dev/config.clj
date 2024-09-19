@@ -1,7 +1,7 @@
 (ns io.julienvincent.dev.config
   (:require
-   [clojure.java.io :as io]
-   [clojure.edn :as edn]))
+   [clojure.edn :as edn]
+   [clojure.java.io :as io]))
 
 (defn get-local-config []
   (let [file (io/file "deps.local.edn")]

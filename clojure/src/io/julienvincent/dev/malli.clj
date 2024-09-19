@@ -19,7 +19,6 @@
             (when (= :malli.core/register-function-schema key)
               (throw (ex-info (str "Failed to register function schema for "
                                    (:ns data) "/" (:name data))
-
                               {:ns (:ns data)
                                :name (:name data)})))
 
@@ -28,14 +27,18 @@
                      :data data}))
 
             (when (:throw report)
-              (throw (ex-info (str "Function "
-                                   (:fn-name data)
-                                   " schema not satisfied - "
-                                   key)
-                              (cond-> {:input (:args data)
-                                       :type key
-                                       :fn (:fn-name data)}
-                                (:value data) (assoc :output (:value data)))))))})
+              (case key
+                :malli.core/invalid-schema
+                (throw (ex-info "Invalid malli schema" data))
+
+                (throw (ex-info (str "Function "
+                                     (:fn-name data)
+                                     " schema not satisfied - "
+                                     key)
+                                (cond-> {:input (:args data)
+                                         :type key
+                                         :fn (:fn-name data)}
+                                  (:value data) (assoc :output (:value data))))))))})
 
         (catch Exception ex
           (tap> "Failed to initialize malli instrumentation")
