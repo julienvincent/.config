@@ -1,4 +1,4 @@
-"$schema" = "https://jj-vcs.github.io/jj/v0.29.0/config-schema.json"
+"$schema" = "https://jj-vcs.github.io/jj/v0.31.0/config-schema.json"
 
 [user]
 name = "Julien Vincent"
@@ -24,17 +24,11 @@ diff-args = [
   "$right",
 ]
 
-[merge-tools.vim]
+[merge-tools.diffconflicts]
 program = "nvim"
 merge-args = [
-  "-c",
-  "let g:jj_diffconflicts_marker_length=$marker_length",
-  "-c",
-  "JJDiffConflicts!",
-  "$output",
-  "$base",
-  "$left",
-  "$right",
+    "-c", "let g:jj_diffconflicts_marker_length=$marker_length",
+    "-c", "JJDiffConflicts!", "$output", "$base", "$left", "$right",
 ]
 merge-tool-edits-conflict-markers = true
 
@@ -54,7 +48,6 @@ jj log --reversed -Tchangelog --no-graph -r "$@ & ~merges()"
 
 [git]
 auto-local-bookmark = true
-push-bookmark-prefix = "jv/ref-"
 push-new-bookmarks = true
 write-change-id-header = true
 
@@ -78,6 +71,9 @@ expand = "expand(@)"
 [revsets]
 
 log = "stack(@)"
+
+[templates]
+git_push_bookmark = '"jv/ref-" ++ change_id.short()'
 
 [template-aliases]
 'format_as_date(timestamp)' = 'timestamp.local().format("%Y-%m-%d")'
