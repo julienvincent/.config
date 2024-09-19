@@ -61,7 +61,8 @@ current = { fg = "yellow", bg = "black", bold = true, underline = true }
 
 [revset-aliases]
 
-'local()' = 'trunk()..mine()'
+local = 'trunk()..mine()'
+extended = "fork_point(trunk():: | @):: | trunk()"
 
 [revsets]
 
