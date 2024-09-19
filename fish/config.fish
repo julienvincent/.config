@@ -16,7 +16,6 @@ alias p="pnpm"
 alias pl="pnpm link --global"
 alias px="pnpx"
 
-alias k="kubectl"
 alias ka="kafkactl"
 
 alias ls="lsd"
