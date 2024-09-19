@@ -27,7 +27,6 @@ alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.config/nvim"
 alias vrest="nvim ~/.http"
 
-mise activate fish | source
 starship init fish | source
 
 # The default backwards search uses fuzzy matching instead of exact prefix matching
