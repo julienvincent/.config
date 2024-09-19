@@ -28,20 +28,28 @@
       [sym])
     []))
 
+(defonce ^:private binding-value*
+  (atom {}))
+
+(defn b* [name]
+  (get @binding-value* name))
+
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
-(defn run-binding! [binding-name]
-  (if-let [sym (if (symbol? binding-name)
-                 binding-name
-                 (dev.config/get-binding binding-name))]
-    (let [sym (if (vector? sym)
-                (first sym)
-                sym)]
-      (if-let [f (requiring-resolve sym)]
-        (do (println (str "Running " sym))
-            (f))
-        (println (str "No " binding-name " var found"))))
-    (println (str "No " binding-name " defined in project :local/config")))
-  nil)
+(defn run-binding!
+  ([binding-name] (run-binding! binding-name nil))
+  ([binding-name binding-sym]
+   (if-let [sym (if (symbol? binding-sym)
+                  binding-sym
+                  (dev.config/get-binding binding-name))]
+     (let [sym (if (vector? sym)
+                 (first sym)
+                 sym)]
+       (if-let [f (requiring-resolve sym)]
+         (do (println (str "Running " sym))
+             (swap! binding-value* assoc binding-name (f)))
+         (println (str "No " binding-name " var found"))))
+     (println (str "No " binding-name " defined in project :local/config")))
+   nil))
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn reload-namespaces []
