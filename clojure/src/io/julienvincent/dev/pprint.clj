@@ -3,7 +3,7 @@
    [clj-commons.format.exceptions :as pretty.exceptions]
    [zprint.core :as zprint])
   (:import
-   [java.io Writer]))
+   [java.io Writer OutputStream]))
 
 (def ^:private opts
   {:map {:comma? false}
@@ -34,8 +34,14 @@
                :user-fn [:white]}})
 
 (defn println! [out ^String msg]
-  (Writer/.write out msg)
-  (Writer/.write out "\n"))
+  (cond
+    (instance? OutputStream out)
+    (do (OutputStream/.write out (String/.getBytes msg))
+        (OutputStream/.write out (String/.getBytes "\n")))
+
+    (instance? Writer out)
+    (do (Writer/.write out msg)
+        (Writer/.write out "\n"))))
 
 (defn echo [out data]
   (if (instance? Throwable data)

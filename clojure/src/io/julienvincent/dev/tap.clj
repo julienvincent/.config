@@ -8,4 +8,7 @@
   (let [stdout (FileOutputStream. FileDescriptor/out)]
     (add-tap
      (fn [data]
-       (dev.pprint/echo stdout data)))))
+       (try (dev.pprint/echo stdout data)
+            (catch Exception e
+              (dev.pprint/echo stdout "Tap Failed")
+              (dev.pprint/echo stdout e)))))))

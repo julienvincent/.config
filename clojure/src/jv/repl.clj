@@ -1,4 +1,5 @@
 (ns jv.repl
+  (:refer-clojure :exclude [tap>])
   (:require
    [clj-async-profiler.core :as prof]
    [clj-reload.core :as reload]
@@ -23,8 +24,8 @@
                 :no-reload '#{user}})
   nil
   (catch Exception ex
-    (tap> "Failed to initialize clj-reload")
-    (tap> ex)))
+    (clojure.core/tap> "Failed to initialize clj-reload")
+    (clojure.core/tap> ex)))
 
 #_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn list-bindings [binding-name]
@@ -78,12 +79,12 @@
                     math/round
                     (/ 100.0))]
      (prn (str "Time [" ~name "]: " delta# "ms"))
-     (tap> [~name, delta#])
+     (clojure.core/tap> [~name, delta#])
      result#))
 
 #_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
-(defn tap>> [& args]
-  (tap> args)
+(defn tap> [& args]
+  (clojure.core/tap> args)
   (last args))
 
 (defn echo-repl [msg]
