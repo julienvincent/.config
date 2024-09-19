@@ -24,14 +24,13 @@ push = ["git", "push"]
 
 [git]
 auto-local-branch = true
-push-branch-prefix = "jv/change-"
+push-bookmark-prefix = "jv/ref-"
 
 [signing]
 sign-all = true
-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFrtvt1/rcCsF7Jf4zgmu/vjRnzEXMlXzt8FmouxCxFH"
 backend = "ssh"
-backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-backends.ssh.allowed-signers = "/Users/julienvincent/.ssh/allowed-signers"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFrtvt1/rcCsF7Jf4zgmu/vjRnzEXMlXzt8FmouxCxFH"
+backends.ssh.allowed-signers = "~/.ssh/allowed-signers"
 
 [colors]
 current = { fg = "yellow", bg = "black", bold = true, underline = true }
