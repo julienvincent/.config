@@ -1,4 +1,4 @@
-(ns io.julienvincent.bench.load
+(ns io.julienvincent.bench.burner
   (:import
    [java.util.concurrent
     ExecutorService
@@ -7,6 +7,16 @@
     TimeUnit]
    [java.util.concurrent.atomic AtomicLong]
    [org.HdrHistogram ConcurrentHistogram]))
+
+(defn- ns->ms [ns]
+  (/ ns 1e6))
+
+(defn- ns->s [ns]
+  (/ ns 1e9))
+
+(defn- percentile-as-ms [hist quantile]
+  (-> (ConcurrentHistogram/.getValueAtPercentile hist quantile)
+      ns->ms))
 
 (defn burn! [opts f]
   (let [concurrency (get opts :concurrency 1)
@@ -72,35 +82,33 @@
           (ExecutorService/.shutdownNow pool)))
 
       (mapv deref tasks)
+      (ExecutorService/.shutdownNow pool)
 
       (let [ops-total (AtomicLong/.get total-succeeded)
             ops-failed (AtomicLong/.get total-failed)
 
             dx (- (System/nanoTime) started-at)
-            dx-seconds (/ dx 1e9)
+            dx-seconds (ns->s dx)
 
-            ops-per-second (/ ops-total dx-seconds)
+            max (ConcurrentHistogram/.getMaxValue hist)
+            min (ConcurrentHistogram/.getMinValue hist)
+            mean (ConcurrentHistogram/.getMean hist)]
 
-            n (.getTotalCount hist)
-            ns->ms (fn [ns] (/ ns 1e6))
-            p (fn [q] (ns->ms (.getValueAtPercentile hist q)))
-            mean (if (pos? n) (ns->ms (long (/ (.getMean hist) 1))) 0.0)]
-
-        (ExecutorService/.shutdownNow pool)
         (ExecutorService/.awaitTermination pool 1 TimeUnit/SECONDS)
 
-        {:ops-per-second ops-per-second
-         :runtime-seconds dx-seconds
+        {:runtime-seconds dx-seconds
 
+         :ops-per-second (/ ops-total dx-seconds)
          :ops-total ops-total
          :ops-failed ops-failed
 
-         :mean mean
-         :max (ns->ms (.getMaxValue hist))
+         :min (ns->ms min)
+         :max (ns->ms max)
+         :mean (ns->ms (long mean))
 
-         :p50 (p 50.0)
-         :p95 (p 95.0)
-         :p99 (p 99.0)}))))
+         :p50 (percentile-as-ms hist 50.0)
+         :p95 (percentile-as-ms hist 95.0)
+         :p99 (percentile-as-ms hist 99.0)}))))
 
 (defmacro burn
   "Run a given function `f` with various constraints and calculate its performance.
