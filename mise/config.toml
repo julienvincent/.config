@@ -11,6 +11,7 @@ node = "22.19.0"
 neovim = "nightly"
 kubectl = "1.32.2"
 kubectx = "0.9.5"
+taplo = "0.10.0"
 
 [alias.java.versions]
 

@@ -4,6 +4,7 @@ query_paths = ["queries"]
 clojure = "https://github.com/sogaiu/tree-sitter-clojure"
 markdown = "https://github.com/MDeiml/tree-sitter-markdown"
 rust = "https://github.com/tree-sitter/tree-sitter-rust"
+http = "https://github.com/rest-nvim/tree-sitter-http"
 
 [formatters]
 prettier = { cmd = "prettier", args = [
@@ -27,6 +28,8 @@ cljfmt = { cmd = "cljfmt", args = [
 
 rustfmt = { cmd = "rustfmt", args = ["--emit=stdout", "--edition=2024"] }
 
+taplo = { cmd = "taplo", args = ["format", "-"] }
+
 [plugins]
 trim_newlines = "https://github.com/pruner-formatter/plugin-trim-newlines/releases/download/v0.1.1/plugin.wasm"
 align_comments = "https://github.com/pruner-formatter/plugin-clojure-comment-formatter/releases/download/v0.1.0/plugin.wasm"
@@ -41,6 +44,7 @@ clojure = [
 ]
 json = ["prettier"]
 rust = ["rustfmt"]
+toml = ["taplo"]
 
 # Generally when formatting from my editor Clojure is handled by the LSP - so
 # we don't format the root document using cljfmt.
