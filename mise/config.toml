@@ -1,7 +1,7 @@
 [tools]
 clojure = "1.12.0.1479"
 rust-analyzer = "2025-04-07"
-rust = "nightly-2025-04-07"
+rust = "nightly-2026-01-21"
 java = "temurin-21.0.4+7.0.LTS"
 go = "1.22.0"
 python = "3.11.3"
@@ -12,9 +12,10 @@ neovim = "nightly"
 kubectl = "1.32.2"
 kubectx = "0.9.5"
 taplo = "0.10.0"
+atuin = "latest"
+prettier = "latest"
 
-[alias.java.versions]
-
+[tool_alias.java.versions]
 graal = 'graalvm-community-21.0.2'
 temurin = 'temurin-21.0.4+7.0.LTS'
 
