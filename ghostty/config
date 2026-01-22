@@ -1,0 +1,48 @@
+font-family = "MonoLisa"
+
+# Theme (match WezTerm's built-in GruvboxDark)
+theme = Gruvbox Dark
+
+# Match WezTerm overrides
+cursor-color = "#928374"
+split-divider-color = "#928374"
+
+# Window chrome (Linux/GTK)
+# Force Ghostty to draw the titlebar/tab bar and color it with the theme.
+window-theme = ghostty
+
+gtk-wide-tabs = false
+
+# Extra GTK styling (thinner headerbar + gruvbox accents)
+gtk-custom-css = ./gtk.css
+
+# Clipboard
+keybind = ctrl+insert=copy_to_clipboard
+keybind = shift+insert=paste_from_clipboard
+
+# Send ALT+i (useful for some terminal workflows)
+keybind = ctrl+i=esc:i
+
+# Splits
+keybind = super+d=new_split:right
+keybind = super+shift+d=new_split:down
+keybind = super+shift+enter=toggle_split_zoom
+keybind = super+b=equalize_splits
+keybind = super+w=close_surface
+
+# Tabs
+keybind = super+t=new_tab
+keybind = super+shift+arrow_left=previous_tab
+keybind = super+shift+arrow_right=next_tab
+
+# Move tabs
+keybind = ctrl+shift+arrow_left=move_tab:-1
+keybind = ctrl+shift+arrow_right=move_tab:1
+keybind = alt+shift+arrow_left=move_tab:-1
+keybind = alt+shift+arrow_right=move_tab:1
+
+# Pane navigation (wezterm CMD+ALT+arrows)
+keybind = super+alt+arrow_left=goto_split:left
+keybind = super+alt+arrow_right=goto_split:right
+keybind = super+alt+arrow_up=goto_split:up
+keybind = super+alt+arrow_down=goto_split:down
