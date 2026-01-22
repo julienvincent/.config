@@ -7,6 +7,17 @@ function M.init(config)
   local action = wezterm.action
   config.keys = {
     {
+      key = "Insert",
+      mods = "CTRL",
+      action = action.CopyTo("Clipboard"),
+    },
+    {
+      key = "Insert",
+      mods = "SHIFT",
+      action = action.PasteFrom("Clipboard"),
+    },
+
+    {
       key = "i",
       mods = "CTRL",
       action = wezterm.action.SendKey({ key = "i", mods = "ALT" }),
@@ -57,6 +68,17 @@ function M.init(config)
     },
     {
       mods = "OPT|SHIFT",
+      key = "RightArrow",
+      action = action.MoveTabRelative(1),
+    },
+
+    {
+      mods = "CTRL|SHIFT",
+      key = "LeftArrow",
+      action = action.MoveTabRelative(-1),
+    },
+    {
+      mods = "CTRL|SHIFT",
       key = "RightArrow",
       action = action.MoveTabRelative(1),
     },

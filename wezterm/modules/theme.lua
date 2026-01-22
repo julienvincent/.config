@@ -1,18 +1,19 @@
 local wezterm = require("wezterm")
 
 local function get_appearance()
-  if wezterm.gui then
-    return wezterm.gui.get_appearance()
-  end
+  -- if wezterm.gui then
+  --   return wezterm.gui.get_appearance()
+  -- end
   return "Dark"
 end
 
 local function scheme_for_appearance(appearance)
-  if appearance:find("Dark") then
+  -- if appearance:find("Dark") then
+  --   return "GruvboxDark"
+  -- else
+  --   return "GruvboxLight"
+  -- end
     return "GruvboxDark"
-  else
-    return "GruvboxLight"
-  end
 end
 
 local M = {
@@ -33,11 +34,11 @@ function M.init(config)
       local colors = wezterm.color.get_builtin_schemes()[scheme]
 
       overrides.color_scheme = scheme
-      overrides.colors = {
-        tab_bar = {
-          background = colors.background,
-        },
-      }
+      -- overrides.colors = {
+      --   tab_bar = {
+      --     background = colors.background,
+      --   },
+      -- }
 
       window:set_config_overrides(overrides)
     end

@@ -8,11 +8,23 @@ config.check_for_updates = false
 config.window_close_confirmation = "AlwaysPrompt"
 
 config.enable_kitty_graphics = true
+config.enable_wayland = true
+
+config.mux_enable_ssh_agent = false
+
+-- local onep_auth =
+--     string.format('%s/.1password/agent.sock', wez.home_dir)
+--   -- Glob is being used here as an indirect way to check to see if
+--   -- the socket exists or not. If it didn't, the length of the result
+--   -- would be 0
+--   if #wez.glob(onep_auth) == 1 then
+--     config.default_ssh_auth_sock = onep_auth
+--   end
 
 config.font = wez.font("MonoLisa", {
   weight = "Medium",
 })
-config.font_size = 13
+config.font_size = 11
 config.line_height = 1.1
 
 config.freetype_load_target = "Normal"
@@ -46,7 +58,7 @@ config.inactive_pane_hsb = {
 
 config.term = "wezterm"
 
-config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
+config.window_decorations = "NONE"
 
 config.window_frame = {
   border_top_height = "10",
