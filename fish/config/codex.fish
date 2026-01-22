@@ -1,1 +1,1 @@
-set -x CODEX_HOME $HOME/.config/codex
+set -x CODEX_HOME $XDG_CONFIG_HOME/codex

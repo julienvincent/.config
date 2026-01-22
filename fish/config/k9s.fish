@@ -1,1 +1,1 @@
-set -x K9S_CONFIG_DIR $HOME/.config/k9s
+set -x K9S_CONFIG_DIR $XDG_CONFIG_HOME/k9s

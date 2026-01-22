@@ -1,1 +1,1 @@
-set -x NREPL_CONFIG_DIR $HOME/.config/nrepl
+set -x NREPL_CONFIG_DIR $XDG_CONFIG_HOME/nrepl

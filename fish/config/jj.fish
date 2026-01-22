@@ -1,3 +1,1 @@
-set -x JJ_CONFIG $HOME/.config/jj/config.toml
-
-COMPLETE=fish jj | source
+set -x JJ_CONFIG $XDG_CONFIG_HOME/jj/config.toml
