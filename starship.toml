@@ -38,13 +38,10 @@ disabled = true
 disabled = true
 
 [nodejs]
-format = "[$symbol($version )]($style)"
-style = "bright-green"
+disabled = true
 
 [kubernetes]
-disabled = false
-style = "bright-purple"
-format = "[$symbol$context]($style) "
+disabled = true
 
 [custom.jujutsu]
 when = true
