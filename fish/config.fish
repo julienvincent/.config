@@ -43,3 +43,6 @@ alias vrest="nvim ~/.http"
 if status is-interactive && type -q starship
     starship init fish | source
 end
+
+# opencode
+fish_add_path /home/julienvincent/.opencode/bin
