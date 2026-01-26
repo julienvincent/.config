@@ -16,6 +16,8 @@ gtk-wide-tabs = false
 # Extra GTK styling (thinner headerbar + gruvbox accents)
 gtk-custom-css = ./gtk.css
 
+confirm-close-surface=false
+
 # Clipboard
 keybind = ctrl+insert=copy_to_clipboard
 keybind = shift+insert=paste_from_clipboard

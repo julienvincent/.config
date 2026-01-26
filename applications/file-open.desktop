@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=File Open
+Exec=open-yazi %u
+Type=Application
+MimeType=inode/directory;
+Terminal=false

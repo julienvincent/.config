@@ -1,0 +1,1 @@
+set -x XDG_DATA_DIRS $XDG_CONFIG_HOME/applications $XDG_DATA_DIRS

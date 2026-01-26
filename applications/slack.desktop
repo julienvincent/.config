@@ -1,0 +1,5 @@
+[Desktop Entry]
+Terminal=false
+Type=Application
+Name=Slack
+Exec=focus-webapp "Slack" "https://app.slack.com"

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Terminal=false
+Type=Application
+Name=Gather V2
+Exec=focus-webapp "Gather" "https://app.v2.gather.town"

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=File Explorer
+Exec=focus-tui yazi
+Type=Application
+Terminal=false
