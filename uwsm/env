@@ -1,0 +1,18 @@
+export PATH="$HOME/.local/bin:${XDG_CONFIG_HOME:-$HOME/.config}/hypr/bin:$PATH"
+
+export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share"
+
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=Hyprland
+export XDG_SESSION_DESKTOP=Hyprland
+
+export GDK_BACKEND=wayland,x11,*
+export QT_QPA_PLATFORM='wayland;xcb'
+export QT_STYLE_OVERRIDE=kvantum
+export QT_QPA_PLATFORMTHEME=qt6ct
+export SDL_VIDEODRIVER=wayland
+export MOZ_ENABLE_WAYLAND=1
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
+export OZONE_PLATFORM=wayland
+
+export XCURSOR_SIZE=24

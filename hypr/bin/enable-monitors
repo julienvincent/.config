@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euo pipefail
+
+hyprctl dispatch dpms on
+# hyprctl keyword monitor "desc:LG Electronics LG ULTRAGEAR+ 310NTBK5K805, 3840x2160@144, 2304x0, 1.5"

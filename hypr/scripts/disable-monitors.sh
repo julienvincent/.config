@@ -1,5 +1,0 @@
-#!/bin/bash
-set -euo pipefail
-
-hyprctl dispatch dpms off
-hyprctl keyword monitor "desc:LG Electronics LG ULTRAGEAR+ 310NTBK5K805, disable"

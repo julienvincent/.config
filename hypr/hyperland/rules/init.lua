@@ -1,0 +1,5 @@
+require("hyperland.rules.airplay")
+require("hyperland.rules.dolphin")
+require("hyperland.rules.kde-portal")
+require("hyperland.rules.localsend")
+require("hyperland.rules.zen")

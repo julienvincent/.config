@@ -1,0 +1,5 @@
+require("hyperland.keybinds.general")
+require("hyperland.keybinds.workspace")
+require("hyperland.keybinds.window")
+require("hyperland.keybinds.apps")
+require("hyperland.keybinds.terminal")
