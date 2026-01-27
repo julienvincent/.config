@@ -4,3 +4,4 @@ Exec=open-yazi %u
 Type=Application
 MimeType=inode/directory;
 Terminal=false
+NoDisplay=true

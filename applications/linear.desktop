@@ -1,0 +1,5 @@
+[Desktop Entry]
+Terminal=false
+Type=Application
+Name=Linear
+Exec=focus-webapp "Linear" "https://linear.app/"
