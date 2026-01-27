@@ -75,7 +75,15 @@ expand = "expand(@)"
 
 [revsets]
 
-log = "stack(@)"
+# 1. Get all parents of all commits in @ but not in trunk()
+# 2. Then find all commits between those parents and @ + trunk()
+#
+# This is like a more powerful fork_point() implementation that finds _all_ fork points instead
+# of just the shortest path.
+#
+# This is useful when there are merge commits involved.
+# log = "(trunk()..@)-::(@ | trunk())"
+log = "(trunk()..@)-::(@ | trunk()) | @-::"
 
 bookmark-advance-to = "@-"
 
