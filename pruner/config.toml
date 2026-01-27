@@ -5,6 +5,7 @@ clojure = "https://github.com/sogaiu/tree-sitter-clojure"
 markdown = "https://github.com/MDeiml/tree-sitter-markdown"
 rust = "https://github.com/tree-sitter/tree-sitter-rust"
 http = "https://github.com/rest-nvim/tree-sitter-http"
+nix = "https://github.com/nix-community/tree-sitter-nix"
 
 [formatters]
 prettier = { cmd = "prettier", args = [
@@ -45,6 +46,13 @@ clojure = [
 json = ["prettier"]
 rust = ["rustfmt"]
 toml = ["taplo"]
+
+typescript = ["prettier"]
+javascript = ["prettier"]
+
+[language_aliases]
+typescript = ["ts", "tsx"]
+javascript = ["js", "jsx"]
 
 # Generally when formatting from my editor Clojure is handled by the LSP - so
 # we don't format the root document using cljfmt.
