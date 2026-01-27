@@ -60,6 +60,7 @@ qml = ["qmlformat", "trim_newlines"]
 [language_aliases]
 typescript = ["ts", "tsx"]
 javascript = ["js", "jsx"]
+markdown = ["mdx"]
 
 # Generally when formatting from my editor Clojure is handled by the LSP - so
 # we don't format the root document using cljfmt.
