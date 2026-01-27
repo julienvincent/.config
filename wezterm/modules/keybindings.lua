@@ -73,17 +73,6 @@ function M.init(config)
     },
 
     {
-      mods = "CTRL|SHIFT",
-      key = "LeftArrow",
-      action = action.MoveTabRelative(-1),
-    },
-    {
-      mods = "CTRL|SHIFT",
-      key = "RightArrow",
-      action = action.MoveTabRelative(1),
-    },
-
-    {
       key = "LeftArrow",
       mods = "CMD|ALT",
       action = action.ActivatePaneDirection("Left"),
