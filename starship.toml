@@ -7,43 +7,18 @@ format = """
 $directory\
 $cmd_duration\
 ${custom.jujutsu}\
-$fill \
-$kubernetes\
-$pulumi\
-$env_var\
-$crystal\
-$sudo\
 $line_break\
-$jobs\
-$battery\
-$status\
-$container\
-$shell\
-$time\
 $character"""
 
 [fill]
-symbol = "-"
-style = "black"
+symbol = ""
 
 [directory]
 truncate_to_repo = false
 style = "bright-yellow"
 truncation_length = 8
 
-[gcloud]
-disabled = true
-
-[package]
-disabled = true
-
-[nodejs]
-disabled = true
-
-[kubernetes]
-disabled = true
-
 [custom.jujutsu]
 when = true
-shell=["sh"]
-command="~/.config/starship/jujutsu.sh"
+shell = ["sh"]
+command = "~/.config/starship/jujutsu.sh"
