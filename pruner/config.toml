@@ -27,6 +27,11 @@ cljfmt = { cmd = "cljfmt", args = [
   "--remove-multiple-non-indenting-spaces",
 ] }
 
+qmlformat = { cmd = "qmlformat", args = [
+  "$file",
+  "--column-width=$textwidth",
+], stdin = false, stdout = true, file_ext = ".qml", colocate_temp_file = true }
+
 rustfmt = { cmd = "rustfmt", args = ["--emit=stdout", "--edition=2024"] }
 
 taplo = { cmd = "taplo", args = ["format", "-"] }
@@ -49,6 +54,8 @@ toml = ["taplo"]
 
 typescript = ["prettier"]
 javascript = ["prettier"]
+
+qml = ["qmlformat", "trim_newlines"]
 
 [language_aliases]
 typescript = ["ts", "tsx"]
