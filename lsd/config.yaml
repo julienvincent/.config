@@ -1,3 +1,6 @@
 recursion:
   depth: 3
 
+sorting:
+  column: time
+  reverse: true
