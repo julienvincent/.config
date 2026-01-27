@@ -1,0 +1,25 @@
+/home/*/.config/vox/
+/home/*/.config/chromium/
+/home/*/.config/mozilla/
+/home/*/.config/gcloud/
+/home/*/.config/whatsappweb*
+/home/*/.config/*-nativefier*
+
+**/*.log
+
+# Code
+
+**/node_modules
+**/target
+**/dist
+**/build
+
+**/.clj-kondo
+**/.lsp
+**/.cpcache
+**/.next
+**/.zig-cache
+
+# Misc Paths
+
+/home/julienvincent/code/asahi-linux/
