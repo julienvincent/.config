@@ -14,6 +14,9 @@ kubectx = "0.9.5"
 taplo = "0.10.0"
 atuin = "latest"
 prettier = "latest"
+doggo = "latest"
+zig = "latest"
+gron = "latest"
 
 [tool_alias.java.versions]
 graal = 'graalvm-community-21.0.2'
