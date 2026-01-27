@@ -17,7 +17,7 @@ doggo = "1.1.4"
 zig = "0.15.2"
 gron = "0.7.1"
 stern = "1.33.1"
-opencode = "1.14.18"
+opencode = "1.14.39"
 deno = "2.7.6"
 
 [tool_alias.java.versions]
