@@ -1,5 +1,7 @@
 sync_address = "https://atuin.julienvincent.io"
 
+search_mode = "daemon-fuzzy"
+
 dialect = "uk"
 style = "compact"
 inline_height = 0
@@ -17,3 +19,7 @@ scroll_exits = false
 
 [theme]
 name = "gruvbox"
+
+[daemon]
+enabled = true
+autostart = true
