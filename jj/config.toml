@@ -9,6 +9,7 @@ default-command = "logr"
 diff-instructions = false
 
 diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+merge-editor = ["nvim", "-c", "MergeEditor $base $left $right $output $path"]
 
 # This is wrapped in 'sh -c' so that I can expand the $HOME env var
 pager = ["sh", "-c", "delta --config $HOME/.config/delta/config.ini"]
@@ -46,6 +47,13 @@ push = ["git", "push"]
 changelog = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
 jj log --reversed -Tchangelog --no-graph -r "$@ & ~merges()"
+""", ""]
+
+pr = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+jj abandon -r _ || true
+git fetch ${1} pull/${2}/head:_
+jj new _
 """, ""]
 
 [git]
