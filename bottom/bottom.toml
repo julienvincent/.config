@@ -1,0 +1,31 @@
+[flags]
+unnormalized_cpu = true
+process_memory_as_value = true
+show_table_scroll_position = true
+
+[styles.widgets]
+selected_border_color = "light magenta"
+widget_title = { color = "white", bold = true }
+selected_text = { color = "black", bold = true, bg_color = "yellow" }
+
+# Dashboard Layout
+
+[[row]]
+ratio = 20
+[[row.child]]
+ratio = 2
+type = "cpu"
+
+[[row.child]]
+ratio = 1
+type = "mem"
+
+[[row.child]]
+ratio = 1
+type = "net"
+
+[[row]]
+ratio = 80
+[[row.child]]
+type = "proc"
+default = true
