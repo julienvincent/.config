@@ -2,4 +2,5 @@
 Terminal=false
 Type=Application
 Name=WhatsApp
+Icon=whatsapp
 Exec=focus-webapp "WhatsApp" "https://web.whatsapp.com/"

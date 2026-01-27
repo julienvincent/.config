@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Impala
+Icon=wifi
+Exec=focus-tui impala
+Type=Application
+Terminal=false
