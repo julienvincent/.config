@@ -1,4 +1,4 @@
-"$schema" = "https://jj-vcs.github.io/jj/v0.37.0/config-schema.json"
+"$schema" = "https://jj-vcs.github.io/jj/v0.39.0/config-schema.json"
 
 [user]
 name = "Julien Vincent"
@@ -76,6 +76,8 @@ expand = "expand(@)"
 [revsets]
 
 log = "stack(@)"
+
+bookmark-advance-to = "@-"
 
 [templates]
 git_push_bookmark = '"jv/ref-" ++ change_id.short()'
