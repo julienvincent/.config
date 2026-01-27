@@ -43,7 +43,7 @@ current_change_id="${3}"
 parent_change_ids="${4}"
 
 gray="\033[0;37m"
-bold_gray="\033[1;30m"
+bold_gray="\033[1;37m"
 bold_purple="\033[1;35m"
 yellow="\033[0;33m"
 bold_yellow="\033[1;33m"
