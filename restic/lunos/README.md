@@ -24,6 +24,7 @@ your PATH:
 ln -s $(pwd)/backup.sh $HOME/.local/bin/lunos-backup
 ln -s $(pwd)/prune.sh $HOME/.local/bin/lunos-backup-prune
 ln -s $(pwd)/auth.sh $HOME/.local/bin/lunos-backup-auth
+ln -s $(pwd)/reminder.sh $HOME/.local/bin/lunos-backup-reminder
 ```
 
 ### SystemD Services
