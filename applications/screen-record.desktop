@@ -1,0 +1,6 @@
+[Desktop Entry]
+Terminal=false
+Type=Application
+Name=Record Screen
+Icon=camera-video
+Exec=qs ipc call lunos recordScreen
