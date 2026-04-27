@@ -9,6 +9,10 @@ function __get_commit_from_revset
         --no-graph
 end
 
+function __is_conflicted
+    test (jj log -r "$argv[1]" -T 'conflict' --no-graph) = true
+end
+
 function __get_commit
     set commit (__get_commit_from_revset "$argv[1]")
     if test $status -ne 0 -o -z "$commit"
@@ -118,6 +122,11 @@ function jd
     end
 
     set -l diff_range
+
+    if __is_conflicted $to_commit
+        echo "$to_commit is conflicted. Cannot use git tooling to render it."
+        return 0
+    end
 
     # Construct diff range based on provided arguments
     if test -n "$from_commit" -a -n "$to_commit"
