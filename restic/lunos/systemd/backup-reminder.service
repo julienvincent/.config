@@ -1,0 +1,7 @@
+[Unit]
+Description=Reminder to run restic backup if it has not run before
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/lunos-backup-reminder
+TimeoutStartSec=10min

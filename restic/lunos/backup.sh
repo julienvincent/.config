@@ -1,19 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export RESTIC_REPOSITORY="rest:https://restic.julienvincent.io/lunos"
-export RESTIC_PASSWORD_COMMAND="op read op://Personal/nuuevmud5eco3uhht2iiwnc3ie/password"
+SCRIPT_DIR="$(cd -P -- "$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")" && pwd)"
+
+source "$SCRIPT_DIR/auth.sh"
 
 restic backup \
-  --files-from "./paths" \
-  --exclude-file "./exclude" \
+  --files-from "$SCRIPT_DIR/config/paths" \
+  --exclude-file "$SCRIPT_DIR/config/exclude" \
   --one-file-system \
   --read-concurrency $(nproc) \
   --verbose \
   "$@"
-
-restic forget \
-  --keep-daily 7 \
-  --keep-weekly 4 \
-  --keep-monthly 6 \
-  --prune
