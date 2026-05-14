@@ -1,8 +1,6 @@
 hl.config({
   debug = {
     disable_scale_checks = true,
-    disable_logs = false,
-    enable_stdout_logs = true
   },
 })
 
