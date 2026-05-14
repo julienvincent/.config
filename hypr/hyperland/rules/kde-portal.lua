@@ -4,5 +4,5 @@ hl.window_rule({
     class = "org.freedesktop.impl.portal.desktop.kde",
   },
   float = true,
-  size = "1200 900",
+  size = { "1200", "900" },
 })

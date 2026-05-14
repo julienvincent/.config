@@ -1,15 +1,8 @@
 hl.window_rule({
-  name = "dolphin-float",
+  name = "dolphin",
   match = {
     class = "org.kde.dolphin",
   },
   float = true,
-})
-
-hl.window_rule({
-  name = "dolphin-size",
-  match = {
-    class = "org.kde.dolphin",
-  },
-  size = "40% 40%",
+  size = { "(monitor_w*0.4)", "(monitor_h*0.4)" },
 })

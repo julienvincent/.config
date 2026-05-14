@@ -8,7 +8,7 @@ hl.window_rule({
   },
   float = true,
   center = true,
-  size = "40% 40%",
+  size = { "(monitor_w*0.4)", "(monitor_h*0.5)" },
   stay_focused = true,
 })
 
@@ -17,7 +17,7 @@ hl.window_rule({
   match = {
     class = "^(local\\.tui\\.numr).*$",
   },
-  size = "30% 40%",
+  size = { "(monitor_w*0.3)", "(monitor_h*0.5)" },
 })
 
 hl.bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("focus-tui numr"))
@@ -29,7 +29,7 @@ hl.window_rule({
   },
   float = true,
   center = true,
-  size = "70% 75%",
+  size = { "(monitor_w*0.7)", "(monitor_h*0.75)" },
   stay_focused = true,
 })
 

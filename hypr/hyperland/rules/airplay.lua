@@ -5,5 +5,5 @@ hl.window_rule({
   },
   float = true,
   center = true,
-  size = "1910 1334",
+  size = { "1910", "1334" },
 })

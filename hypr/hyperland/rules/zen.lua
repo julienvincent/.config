@@ -4,5 +4,5 @@ hl.window_rule({
     float = true,
     initial_class = "zen",
   },
-  size = "1000 700",
+  size = { "1000", "700" },
 })

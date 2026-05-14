@@ -5,5 +5,5 @@ hl.window_rule({
   },
   float = true,
   center = true,
-  size = "40% 40%",
+  size = { "(monitor_w*0.4)", "(monitor_h*0.4)" },
 })
