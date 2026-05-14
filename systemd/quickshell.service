@@ -1,0 +1,15 @@
+[Unit]
+Description=Quickshell desktop shell for lunos
+Documentation=man:hyprpaper(1)
+After=graphical-session.target
+
+[Service]
+Type=exec
+ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "Hyprland" ""
+ExecStart=quickshell
+Restart=always
+RestartSec=2
+Slice=background-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target

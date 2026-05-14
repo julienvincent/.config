@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-ghostty -e yazi "$1" >/dev/null 2>&1 &
+eval exec setsid uwsm-app -- ghostty -e yazi "$1" >/dev/null 2>&1 &
