@@ -9,7 +9,7 @@ hl.window_rule({
   float = true,
   center = true,
   size = { "(monitor_w*0.4)", "(monitor_h*0.5)" },
-  stay_focused = true,
+  stay_focused = false,
 })
 
 hl.window_rule({
@@ -30,7 +30,7 @@ hl.window_rule({
   float = true,
   center = true,
   size = { "(monitor_w*0.7)", "(monitor_h*0.75)" },
-  stay_focused = true,
+  stay_focused = false,
 })
 
 hl.bind("SUPER + SHIFT + K", hl.dsp.exec_cmd("focus-tui btm"))
