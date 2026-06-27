@@ -99,7 +99,7 @@ function history-search-next
     end
 end
 
-if status is-interactive
+if status is-interactive && type -q atuin
     atuin init fish --disable-up-arrow | source
 
     bind up history-search-prev
